@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900">
+  <rect width="1600" height="900" fill="#1c1831"/>
+  <rect x="24" y="24" width="1552" height="852" rx="34" fill="#3d3471"/>
+  <image href="/assets/ppb_main.png" x="30" y="40" width="1540" height="820" preserveAspectRatio="xMidYMid meet"/>
+</svg>
