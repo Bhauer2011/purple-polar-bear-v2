@@ -10,6 +10,7 @@ function getDefaultApiBase() {
 export const apiBase =
   globalThis.localStorage?.getItem("ppb-api-base") ||
   globalThis.PPB_API_BASE ||
+  globalThis.BULK_LISTING_API_BASE ||
   getDefaultApiBase();
 
 function buildUrl(path) {
