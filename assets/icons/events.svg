@@ -1,16 +1,16 @@
 <svg width="48" height="48" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
   <!-- Calendar body -->
-  <path d="M6 6H42C43.6569 6 45 7.34315 45 9V42C45 43.6569 43.6569 45 42 45H6C4.34315 45 3 43.6569 3 42V9C3 7.34315 4.34315 6 6 6Z" fill="#ffd400" stroke="#a68fd2" stroke-width="2" stroke-linejoin="round"></path>
+  <path d="M6 6H42C43.6569 6 45 7.34315 45 9V42C45 43.6569 43.6569 45 42 45H6C4.34315 45 3 43.6569 3 42V9C3 7.34315 4.34315 6 6 6Z" fill="#ffd400" stroke="#711fb7" stroke-width="2" stroke-linejoin="round"></path>
 
   <!-- Top bars + header -->
-  <g stroke="#a68fd2" stroke-width="2" stroke-linecap="round">
+  <g stroke="#711fb7" stroke-width="2" stroke-linecap="round">
     <path d="M9 6V3"></path>
     <path d="M39 6V3"></path>
     <path d="M3 15H45"></path>
   </g>
 
   <!-- Date marks (grid style) -->
-  <g fill="#a68fd2">
+  <g fill="#711fb7">
     <!-- Row 1 -->
     <rect x="12" y="20" width="3" height="3" rx="0.8"></rect>
     <rect x="18" y="20" width="3" height="3" rx="0.8"></rect>

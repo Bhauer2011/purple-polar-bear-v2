@@ -1,7 +1,7 @@
 <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
   <!-- Outer square with yellow fill and purple outline -->
-  <rect x="4" y="4" width="40" height="40" rx="8" fill="#ffd400" stroke="#a68fd2" stroke-width="2"></rect>
+  <rect x="4" y="4" width="40" height="40" rx="8" fill="#ffd400" stroke="#711fb7" stroke-width="2"></rect>
 
   <!-- Plus icon in purple -->
-  <path d="M24 16V32M16 24H32" stroke="#a68fd2" stroke-width="2.5" stroke-linecap="round"></path>
+  <path d="M24 16V32M16 24H32" stroke="#711fb7" stroke-width="2.5" stroke-linecap="round"></path>
 </svg>
