@@ -68,7 +68,7 @@ function loadPreferredTheme() {
     return stored;
   }
 
-  return "light";
+  return "dark";
 }
 
 function applyTheme(theme) {
@@ -326,21 +326,21 @@ function renderHomePage() {
             <div class="menu-card-row">
               <span class="icon-badge icon-badge-menu"><img alt="Menu icon" src="${menuIconUrl}" /></span>
               <div>
-                <h2>Our Delicious Menu</h2>
-                <p>View all our amazing snow ball flavors and specialties.</p>
+                <h2>Our Flavor Menu</h2>
+                <p>Explore all our handcrafted snowball flavors, toppings, and specialties.</p>
               </div>
             </div>
           </a>
           <div class="side-by-side">
             <a class="nav-card nav-card-link" href="#/events">
               <span class="icon-badge icon-badge-calendar"><img alt="Events icon" src="${eventsIconUrl}" /></span>
-              <h3>Events & Locations</h3>
-              <p>See where we’ll be popping up next.</p>
+              <h3>Locations & Events</h3>
+              <p>Find out where we&rsquo;ll be popping up next.</p>
             </a>
             <a class="nav-card nav-card-link" href="#/request-event">
               <span class="icon-badge icon-badge-plus"><img alt="Request event icon" src="${requestIconUrl}" /></span>
-              <h3>Request Event</h3>
-              <p>Bring Purple Polar Bear to your school, party, or community day.</p>
+              <h3>Book an Event</h3>
+              <p>Bring Purple Polar Bear to your next party, school, or community event.</p>
             </a>
           </div>
         </div>

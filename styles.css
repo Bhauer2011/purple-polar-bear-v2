@@ -527,7 +527,7 @@ body.theme-light .nav-card {
 }
 
 .nav-card.menu-feature {
-  min-height: 120px;
+  min-height: 106px;
 }
 
 .icon-badge-menu {
@@ -582,9 +582,19 @@ body.theme-light .nav-card {
   margin: 0;
 }
 
+.menu-feature h2 {
+  font-size: 0.98rem;
+  line-height: 1.15;
+}
+
 .menu-feature p,
 .side-by-side .nav-card p {
   color: #707070;
+}
+
+.menu-feature p {
+  font-size: 0.86rem;
+  line-height: 1.3;
 }
 
 .menu-feature .inline-button,
@@ -595,7 +605,20 @@ body.theme-light .nav-card {
 .side-by-side .nav-card {
   place-items: center;
   text-align: center;
-  min-height: 148px;
+  min-height: 132px;
+  padding: 14px 14px 16px;
+  gap: 8px;
+}
+
+.side-by-side .nav-card h3 {
+  font-size: 0.96rem;
+  line-height: 1.15;
+}
+
+.side-by-side .nav-card p {
+  font-size: 0.82rem;
+  line-height: 1.28;
+  max-width: 17ch;
 }
 
 .photos-grid,
