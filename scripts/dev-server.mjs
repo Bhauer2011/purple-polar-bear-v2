@@ -2,9 +2,10 @@ import { createServer } from "node:http";
 import { readFile } from "node:fs/promises";
 import { extname, join, normalize } from "node:path";
 
-const port = 3000;
+const port = Number(process.env.PORT || 3000);
 const host = "0.0.0.0";
 const root = process.cwd();
+const apiBase = process.env.BULK_LISTING_API_BASE || process.env.PUBLIC_API_BASE || "";
 
 const mimeTypes = {
   ".css": "text/css; charset=utf-8",
@@ -24,10 +25,20 @@ createServer(async (request, response) => {
 
   try {
     const contents = await readFile(filePath);
+    const extension = extname(filePath);
+    const isIndexHtml = extension === ".html" && urlPath === "/index.html";
+    const body = isIndexHtml
+      ? contents
+          .toString("utf8")
+          .replace(
+            "</head>",
+            `    <script>globalThis.BULK_LISTING_API_BASE = ${JSON.stringify(apiBase)};</script>\n  </head>`
+          )
+      : contents;
     response.writeHead(200, {
-      "content-type": mimeTypes[extname(filePath)] || "text/plain; charset=utf-8"
+      "content-type": mimeTypes[extension] || "text/plain; charset=utf-8"
     });
-    response.end(contents);
+    response.end(body);
   } catch {
     response.writeHead(404, { "content-type": "text/plain; charset=utf-8" });
     response.end("Not found");
