@@ -267,7 +267,8 @@ function renderHomePage() {
 
   const upcoming = (data.events || []).slice(0, 3);
   const photos = data.photos || [];
-  const featuredPhotos = photos.slice(0, 2);
+  const featuredPhotos = photos.filter((photo) => photo.featured).slice(0, 2);
+  const homepagePhotos = featuredPhotos.length ? featuredPhotos : photos.slice(0, 2);
   const reviews = data.reviews || [];
   const selectedPhoto = photos.find((photo) => photo.id === state.selectedPhotoId);
   const selectedReview = reviews.find((review) => review.id === state.selectedReviewId);
@@ -329,7 +330,7 @@ function renderHomePage() {
           <a class="inline-button" href="#/photos">View all</a>
         </div>
         <div class="photos-grid featured-photos-grid">
-          ${featuredPhotos
+          ${homepagePhotos
             .map(
               (photo) => `
                 <article class="photo-card photo-button" data-action="open-photo" data-id="${photo.id}">
@@ -427,6 +428,23 @@ function renderHomePage() {
               `
             )
             .join("") || `<div class="empty-state">No upcoming events yet. Add them in the admin dashboard when the backend is ready.</div>`}
+        </div>
+      </section>
+
+      <section class="page home-detail-sections">
+        <div class="section-heading">
+          <div>
+            <h2>Share Purple Polar Bear</h2>
+            <p>Send the whole site to friends, family, and event planners.</p>
+          </div>
+        </div>
+        <div class="site-share-panel">
+          <div class="share-row site-share-row">
+            <button aria-label="Share site to Facebook" class="share-button facebook" data-action="share-site" data-platform="facebook" type="button"><img alt="" src="${facebookIconUrl}" /></button>
+            <button aria-label="Share site to Instagram" class="share-button instagram" data-action="share-site" data-platform="instagram" type="button"><img alt="" src="${instagramIconUrl}" /></button>
+            <button aria-label="Share site to X" class="share-button x" data-action="share-site" data-platform="x" type="button"><img alt="" src="${xIconUrl}" /></button>
+            <button aria-label="Share site to TikTok" class="share-button tiktok" data-action="share-site" data-platform="tiktok" type="button"><img alt="" src="${tiktokIconUrl}" /></button>
+          </div>
         </div>
       </section>
 
@@ -994,7 +1012,13 @@ function renderAdminSection(data) {
                     <div class="photo-copy">
                       <strong>${escapeHtml(photo.title)}</strong>
                       <p class="meta">${escapeHtml(photo.event_name)}</p>
+                      <p class="meta">${photo.featured ? "Featured on homepage" : "Gallery only"}</p>
                       <div class="action-row">
+                        <button class="ghost-button" data-action="toggle-featured-photo" data-id="${photo.id}" data-featured="${
+                          photo.featured ? "false" : "true"
+                        }" type="button">
+                          ${photo.featured ? "Remove from Homepage" : "Feature on Homepage"}
+                        </button>
                         <button class="ghost-button" data-action="delete-photo" data-id="${photo.id}" type="button">Delete</button>
                       </div>
                     </div>
@@ -1206,6 +1230,9 @@ async function handleClick(event) {
     } else if (action === "share-review") {
       await shareReview(button.dataset);
       return;
+    } else if (action === "share-site") {
+      await shareSite(button.dataset);
+      return;
     } else if (action === "refresh-admin") {
       state.adminData = await loadAdminData(token);
     } else if (action === "logout-admin") {
@@ -1220,6 +1247,14 @@ async function handleClick(event) {
       state.adminData = await loadAdminData(token);
     } else if (action === "delete-photo" && id) {
       await apiSend(`/api/admin/event-photos/${id}`, "DELETE", null, token);
+      state.adminData = await loadAdminData(token);
+    } else if (action === "toggle-featured-photo" && id) {
+      await apiSend(
+        `/api/admin/event-photos/${id}/featured`,
+        "PUT",
+        { featured: button.dataset.featured === "true" },
+        token
+      );
       state.adminData = await loadAdminData(token);
     } else if (action === "delete-review" && id) {
       await apiSend(`/api/admin/reviews/${id}`, "DELETE", null, token);
@@ -1282,6 +1317,41 @@ async function shareReview(dataset) {
     );
   } catch {
     window.alert(shareText);
+  }
+}
+
+async function shareSite(dataset) {
+  const shareText =
+    "Check out Purple Polar Bear Hawaiian Shave Ice for menu updates, event photos, reviews, and booking info.";
+  const targetUrl = window.location.origin + window.location.pathname;
+
+  if (dataset.platform === "facebook") {
+    window.open(
+      `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(targetUrl)}&quote=${encodeURIComponent(shareText)}`,
+      "_blank",
+      "width=600,height=500"
+    );
+    return;
+  }
+
+  if (dataset.platform === "x") {
+    window.open(
+      `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(targetUrl)}`,
+      "_blank",
+      "width=600,height=500"
+    );
+    return;
+  }
+
+  try {
+    await navigator.clipboard.writeText(`${shareText} ${targetUrl}`);
+    window.alert(
+      dataset.platform === "instagram"
+        ? "Site link copied to clipboard. Open Instagram to share it."
+        : "Site link copied to clipboard. Open TikTok to share it."
+    );
+  } catch {
+    window.alert(`${shareText} ${targetUrl}`);
   }
 }
 
