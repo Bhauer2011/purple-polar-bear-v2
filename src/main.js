@@ -277,7 +277,9 @@ function renderHomePage() {
       ${renderErrorCard()}
       ${status}
       <section class="hero hero-logo-only">
-        <div class="hero-logo" style="background-image:url('${logoUrl}')"></div>
+        <div class="hero-logo">
+          <img class="hero-logo-image" src="${logoUrl}" alt="Purple Polar Bear Snow Ball" />
+        </div>
       </section>
 
       <section class="page card-grid">

@@ -222,18 +222,26 @@ body.home-route .app-shell {
 }
 
 .hero.hero-logo-only {
-  min-height: 300px;
+  min-height: 340px;
+  background: transparent;
+  border: none;
+  box-shadow: none;
 }
 
 .hero-logo {
   position: absolute;
   inset: 0;
-  background-position: center;
-  background-size: contain;
-  background-repeat: no-repeat;
-  padding: 10px;
   opacity: 1;
   filter: saturate(1.05);
+}
+
+.hero-logo-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  border-radius: var(--radius-xl);
 }
 
 .hero-copy {
@@ -1300,7 +1308,7 @@ body.home-route .info-card {
   }
 
   .hero.hero-logo-only {
-    min-height: 298px;
+    min-height: 320px;
   }
 
   .menu-feature h2 {
