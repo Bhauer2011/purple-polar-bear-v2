@@ -127,43 +127,51 @@
   "event_photos": [
     {
       "id": "38c280ec-bd89-4526-a6a7-2c267c0a3901",
-      "title": "IMG 8654",
-      "event_name": "",
-      "image_base64": "/assets/gallery/user-photos/IMG_8654.JPEG",
+      "title": "Baby SnowBall #1",
+      "event_name": "Baby Event",
+      "image_base64": "/assets/gallery/user-photos/baby-snowball-1.png",
       "featured": true,
       "created_at": "2026-03-18T23:10:20.000000"
     },
     {
       "id": "3d2ac79e-9f19-4443-92b5-c1953604e902",
-      "title": "IMG 8506",
-      "event_name": "",
-      "image_base64": "/assets/gallery/user-photos/IMG_8506.JPEG",
+      "title": "Baby SnowBall #2",
+      "event_name": "Baby Event",
+      "image_base64": "/assets/gallery/user-photos/baby-snowball-2.png",
       "featured": true,
       "created_at": "2026-03-18T23:10:21.000000"
     },
     {
       "id": "8d8241de-ef01-477e-a191-0a7a15fc1503",
-      "title": "IMG 8524",
-      "event_name": "",
-      "image_base64": "/assets/gallery/user-photos/IMG_8524.JPEG",
+      "title": "Baby SnowBall #3",
+      "event_name": "Baby Event",
+      "image_base64": "/assets/gallery/user-photos/baby-snowball-3.png",
       "featured": false,
       "created_at": "2026-03-18T23:10:22.000000"
     },
     {
       "id": "0a69af5c-179d-41fe-86c6-2d8f4d90f804",
-      "title": "IMG 5504",
-      "event_name": "",
-      "image_base64": "/assets/gallery/user-photos/IMG_5504.jpg",
+      "title": "Baby SnowBall #4",
+      "event_name": "Baby Event",
+      "image_base64": "/assets/gallery/user-photos/baby-snowball-4.png",
       "featured": false,
       "created_at": "2026-03-18T23:10:23.000000"
     },
     {
       "id": "62667f62-4387-4443-b7d8-2531cc219405",
-      "title": "IMG 8396",
-      "event_name": "",
-      "image_base64": "/assets/gallery/user-photos/IMG_8396.JPEG",
+      "title": "Baby SnowBall #5",
+      "event_name": "Baby Event",
+      "image_base64": "/assets/gallery/user-photos/baby-snowball-5.png",
       "featured": false,
       "created_at": "2026-03-18T23:10:24.000000"
+    },
+    {
+      "id": "e4ce92f2-b212-4447-b8d8-4e4580f24d06",
+      "title": "Baby SnowBall #6",
+      "event_name": "Baby Event",
+      "image_base64": "/assets/gallery/user-photos/baby-snowball-6.png",
+      "featured": false,
+      "created_at": "2026-03-18T23:10:25.000000"
     }
   ],
   "reviews": [

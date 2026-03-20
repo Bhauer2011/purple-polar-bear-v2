@@ -214,11 +214,12 @@ def build_sample_photo(title: str, event_name: str, image_path: str, *, featured
 
 def build_sample_photos() -> list[dict]:
     return [
-        build_sample_photo("IMG 8654", "", "/assets/gallery/user-photos/IMG_8654.JPEG", featured=True),
-        build_sample_photo("IMG 8506", "", "/assets/gallery/user-photos/IMG_8506.JPEG", featured=True),
-        build_sample_photo("IMG 8524", "", "/assets/gallery/user-photos/IMG_8524.JPEG"),
-        build_sample_photo("IMG 5504", "", "/assets/gallery/user-photos/IMG_5504.jpg"),
-        build_sample_photo("IMG 8396", "", "/assets/gallery/user-photos/IMG_8396.JPEG"),
+        build_sample_photo("Baby SnowBall #1", "Baby Event", "/assets/gallery/user-photos/baby-snowball-1.png", featured=True),
+        build_sample_photo("Baby SnowBall #2", "Baby Event", "/assets/gallery/user-photos/baby-snowball-2.png", featured=True),
+        build_sample_photo("Baby SnowBall #3", "Baby Event", "/assets/gallery/user-photos/baby-snowball-3.png"),
+        build_sample_photo("Baby SnowBall #4", "Baby Event", "/assets/gallery/user-photos/baby-snowball-4.png"),
+        build_sample_photo("Baby SnowBall #5", "Baby Event", "/assets/gallery/user-photos/baby-snowball-5.png"),
+        build_sample_photo("Baby SnowBall #6", "Baby Event", "/assets/gallery/user-photos/baby-snowball-6.png"),
     ]
 
 
