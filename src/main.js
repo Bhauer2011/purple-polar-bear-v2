@@ -11,6 +11,7 @@ import {
 const app = document.querySelector("#app");
 const nav = document.querySelector("#mobile-nav");
 const menuToggle = document.querySelector("#menu-toggle");
+const themeToggle = document.querySelector("#theme-toggle");
 const snowbank = document.querySelector(".snowbank");
 const logoUrl = "/assets/ppb_main.png";
 const menuIconUrl = "/assets/icons/menu.svg";
@@ -33,9 +34,16 @@ const state = {
   loading: false
 };
 
+const THEME_STORAGE_KEY = "ppb-theme";
+
 menuToggle.addEventListener("click", () => {
   nav.classList.toggle("open");
   document.body.classList.toggle("nav-open", nav.classList.contains("open"));
+});
+
+themeToggle?.addEventListener("click", () => {
+  const nextTheme = document.body.classList.contains("theme-dark") ? "light" : "dark";
+  applyTheme(nextTheme);
 });
 
 nav.addEventListener("click", (event) => {
@@ -51,7 +59,36 @@ document.addEventListener("submit", handleSubmit);
 document.addEventListener("click", handleClick);
 window.addEventListener("resize", schedulePhotoLayout);
 
+applyTheme(loadPreferredTheme());
 renderRoute();
+
+function loadPreferredTheme() {
+  const stored = localStorage.getItem(THEME_STORAGE_KEY);
+  if (stored === "dark" || stored === "light") {
+    return stored;
+  }
+
+  return "light";
+}
+
+function applyTheme(theme) {
+  document.body.classList.toggle("theme-light", theme === "light");
+  document.body.classList.toggle("theme-dark", theme === "dark");
+  localStorage.setItem(THEME_STORAGE_KEY, theme);
+  updateThemeToggle(theme);
+}
+
+function updateThemeToggle(theme) {
+  if (!themeToggle) {
+    return;
+  }
+
+  themeToggle.textContent = theme === "dark" ? "Light Mode" : "Dark Mode";
+  themeToggle.setAttribute(
+    "aria-label",
+    theme === "dark" ? "Switch to light mode" : "Switch to dark mode"
+  );
+}
 
 function buildSocialIcon(kind) {
   const icons = {
