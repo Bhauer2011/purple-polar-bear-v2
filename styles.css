@@ -1,6 +1,6 @@
 :root {
   color-scheme: light;
-  --bg: #c7f5ff;
+  --bg: #c8f5ff;
   --bg-alt: #b9e9f4;
   --panel: rgba(228, 242, 251, 0.9);
   --panel-strong: #d4ebf8;
@@ -37,9 +37,7 @@ body {
   min-height: 100vh;
   position: relative;
   padding-bottom: 320px;
-  background:
-    radial-gradient(circle at top, rgba(255, 255, 255, 0.82), rgba(255, 255, 255, 0) 36%),
-    linear-gradient(180deg, #defaff 0%, #cff6ff 42%, #c7f5ff 100%);
+  background: var(--bg);
   color: var(--text);
 }
 
