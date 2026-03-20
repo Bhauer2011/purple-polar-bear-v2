@@ -7,11 +7,24 @@ function getDefaultApiBase() {
   return `http://${host}:8000`;
 }
 
-export const apiBase =
-  globalThis.localStorage?.getItem("ppb-api-base") ||
-  globalThis.PPB_API_BASE ||
-  globalThis.BULK_LISTING_API_BASE ||
-  getDefaultApiBase();
+function resolveApiBase() {
+  const storedBase = globalThis.localStorage?.getItem("ppb-api-base");
+  if (storedBase) {
+    return storedBase;
+  }
+
+  if (Object.prototype.hasOwnProperty.call(globalThis, "PPB_API_BASE")) {
+    return globalThis.PPB_API_BASE;
+  }
+
+  if (Object.prototype.hasOwnProperty.call(globalThis, "BULK_LISTING_API_BASE")) {
+    return globalThis.BULK_LISTING_API_BASE;
+  }
+
+  return getDefaultApiBase();
+}
+
+export const apiBase = resolveApiBase();
 
 function buildUrl(path) {
   return `${apiBase}${path}`;

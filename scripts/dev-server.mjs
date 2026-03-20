@@ -11,6 +11,15 @@ const apiBase =
   process.env.PUBLIC_API_BASE ||
   "";
 
+function readRequestBody(request) {
+  return new Promise((resolve, reject) => {
+    const chunks = [];
+    request.on("data", (chunk) => chunks.push(chunk));
+    request.on("end", () => resolve(chunks.length ? Buffer.concat(chunks) : undefined));
+    request.on("error", reject);
+  });
+}
+
 const mimeTypes = {
   ".css": "text/css; charset=utf-8",
   ".html": "text/html; charset=utf-8",
@@ -24,6 +33,35 @@ const mimeTypes = {
 };
 
 createServer(async (request, response) => {
+  if (apiBase && request.url?.startsWith("/api")) {
+    const targetUrl = `${apiBase}${request.url}`;
+    const bodyBuffer =
+      request.method && request.method !== "GET" && request.method !== "HEAD"
+        ? await readRequestBody(request)
+        : undefined;
+
+    try {
+      const upstream = await fetch(targetUrl, {
+        method: request.method,
+        headers: {
+          ...Object.fromEntries(
+            Object.entries(request.headers).filter(([header]) => header.toLowerCase() !== "host")
+          )
+        },
+        body: bodyBuffer
+      });
+
+      response.writeHead(upstream.status, {
+        "content-type": upstream.headers.get("content-type") || "application/json; charset=utf-8"
+      });
+      response.end(Buffer.from(await upstream.arrayBuffer()));
+    } catch {
+      response.writeHead(502, { "content-type": "application/json; charset=utf-8" });
+      response.end(JSON.stringify({ detail: "Unable to reach backend API." }));
+    }
+    return;
+  }
+
   const urlPath = request.url === "/" ? "/index.html" : request.url;
   const filePath = normalize(join(root, urlPath));
 
@@ -36,7 +74,7 @@ createServer(async (request, response) => {
           .toString("utf8")
           .replace(
             "</head>",
-            `    <script>globalThis.PPB_API_BASE = ${JSON.stringify(apiBase)};globalThis.BULK_LISTING_API_BASE = ${JSON.stringify(apiBase)};</script>\n  </head>`
+            `    <script>globalThis.PPB_API_BASE = ${apiBase ? '""' : "undefined"};globalThis.BULK_LISTING_API_BASE = ${apiBase ? '""' : "undefined"};</script>\n  </head>`
           )
       : contents;
     response.writeHead(200, {
