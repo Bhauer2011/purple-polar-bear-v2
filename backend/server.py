@@ -98,16 +98,21 @@ class AboutUsUpdate(BaseModel):
 
 class EventPhoto(BaseModel):
     id: str = Field(default_factory=lambda: str(uuid4()))
-    title: str
-    event_name: str
+    title: str = ""
+    event_name: str = ""
     image_base64: str
+    featured: bool = False
     created_at: str = Field(default_factory=lambda: datetime.utcnow().isoformat())
 
 
 class EventPhotoCreate(BaseModel):
-    title: str
-    event_name: str
+    title: Optional[str] = ""
+    event_name: Optional[str] = ""
     image_base64: str
+
+
+class EventPhotoFeatureUpdate(BaseModel):
+    featured: bool
 
 
 class Review(BaseModel):
@@ -203,18 +208,17 @@ def build_sample_events() -> list[dict]:
     ]
 
 
-def build_sample_photo(title: str, event_name: str, image_path: str) -> dict:
-    return EventPhoto(title=title, event_name=event_name, image_base64=image_path).model_dump()
+def build_sample_photo(title: str, event_name: str, image_path: str, *, featured: bool = False) -> dict:
+    return EventPhoto(title=title, event_name=event_name, image_base64=image_path, featured=featured).model_dump()
 
 
 def build_sample_photos() -> list[dict]:
     return [
-        build_sample_photo("Purple Bear #1", "Spring Market Pop-Up", "/assets/gallery/portrait-1.svg"),
-        build_sample_photo("Serving at Sunset", "Summer Street Fair", "/assets/gallery/portrait-2.svg"),
-        build_sample_photo("School Spirit Stop", "School Fundraiser Night", "/assets/gallery/square-1.svg"),
-        build_sample_photo("Lights Night Crowd", "Holiday Tree Lighting", "/assets/gallery/landscape-1.svg"),
-        build_sample_photo("Ball Field Setup", "Little League Opening Day", "/assets/gallery/wide-1.svg"),
-        build_sample_photo("Cooling Off by the Lake", "Community Splash Day", "/assets/gallery/pano-1.svg"),
+        build_sample_photo("IMG 8654", "", "/assets/gallery/user-photos/IMG_8654.JPEG", featured=True),
+        build_sample_photo("IMG 8506", "", "/assets/gallery/user-photos/IMG_8506.JPEG", featured=True),
+        build_sample_photo("IMG 8524", "", "/assets/gallery/user-photos/IMG_8524.JPEG"),
+        build_sample_photo("IMG 5504", "", "/assets/gallery/user-photos/IMG_5504.jpg"),
+        build_sample_photo("IMG 8396", "", "/assets/gallery/user-photos/IMG_8396.JPEG"),
     ]
 
 
@@ -331,7 +335,15 @@ def load_data() -> dict:
         data = default_data()
         save_data(data)
         return data
-    return json.loads(DATA_FILE.read_text(encoding="utf-8"))
+    data = json.loads(DATA_FILE.read_text(encoding="utf-8"))
+    changed = False
+    for index, photo in enumerate(data.get("event_photos", [])):
+      if "featured" not in photo:
+          photo["featured"] = index < 2
+          changed = True
+    if changed:
+        save_data(data)
+    return data
 
 
 def save_data(data: dict) -> None:
@@ -480,10 +492,34 @@ def update_about_us(update: AboutUsUpdate) -> dict:
 @app.post("/api/admin/event-photos", dependencies=[Depends(verify_admin)])
 def create_event_photo(photo: EventPhotoCreate) -> dict:
     data = load_data()
-    record = EventPhoto(**photo.model_dump()).model_dump()
+    payload = photo.model_dump()
+    payload["title"] = (payload.get("title") or "").strip() or f"Photo {len(data['event_photos']) + 1}"
+    payload["event_name"] = (payload.get("event_name") or "").strip()
+    record = EventPhoto(**payload).model_dump()
     data["event_photos"].append(record)
     save_data(data)
     return {"message": "Photo uploaded successfully", "id": record["id"]}
+
+
+@app.put("/api/admin/event-photos/{photo_id}/featured", dependencies=[Depends(verify_admin)])
+def update_event_photo_featured(photo_id: str, payload: EventPhotoFeatureUpdate) -> dict:
+    data = load_data()
+    target = None
+    for photo in data["event_photos"]:
+        if photo["id"] == photo_id:
+            target = photo
+            break
+    if target is None:
+        raise HTTPException(status_code=404, detail="Photo not found")
+
+    target["featured"] = payload.featured
+    if payload.featured:
+        featured = [photo for photo in data["event_photos"] if photo.get("featured")]
+        for extra in featured[2:]:
+            extra["featured"] = False
+
+    save_data(data)
+    return {"message": "Photo featured status updated successfully"}
 
 
 @app.delete("/api/admin/event-photos/{photo_id}", dependencies=[Depends(verify_admin)])

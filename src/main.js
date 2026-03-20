@@ -432,12 +432,6 @@ function renderHomePage() {
       </section>
 
       <section class="page home-detail-sections">
-        <div class="section-heading">
-          <div>
-            <h2>Share Purple Polar Bear</h2>
-            <p>Send the whole site to friends, family, and event planners.</p>
-          </div>
-        </div>
         <div class="site-share-panel">
           <div class="share-row site-share-row">
             <button aria-label="Share site to Facebook" class="share-button facebook" data-action="share-site" data-platform="facebook" type="button"><img alt="" src="${facebookIconUrl}" /></button>
@@ -981,21 +975,22 @@ function renderAdminSection(data) {
         <section class="admin-section">
           <form class="form-panel" data-form="admin-photo-add">
             <h2>Upload Photo</h2>
+            <p class="supporting">You can select multiple images at once. Title and event name are optional.</p>
             <div class="form-grid">
               <div class="field">
                 <label for="photo-title">Title</label>
-                <input id="photo-title" name="title" required />
+                <input id="photo-title" name="title" placeholder="Optional. Uses file name if left blank." />
               </div>
               <div class="field">
                 <label for="photo-event">Event Name</label>
-                <input id="photo-event" name="event_name" required />
+                <input id="photo-event" name="event_name" placeholder="Optional shared event name for all selected photos." />
               </div>
               <div class="field">
-                <label for="photo-file">Image</label>
-                <input id="photo-file" name="image" type="file" accept="image/*" required />
+                <label for="photo-file">Image Files</label>
+                <input id="photo-file" name="image" type="file" accept="image/*" multiple required />
               </div>
             </div>
-            <button class="button" type="submit">Upload Photo</button>
+            <button class="button" type="submit">Upload Photo(s)</button>
           </form>
           <div class="photos-grid">
             ${data.photos
@@ -1166,13 +1161,33 @@ async function handleAdminForm(kind, form) {
       break;
     case "admin-photo-add": {
       const fileInput = form.querySelector('input[type="file"]');
-      const file = fileInput?.files?.[0];
-      if (!file) {
-        throw new Error("Please choose an image to upload.");
+      const files = Array.from(fileInput?.files || []);
+      if (!files.length) {
+        throw new Error("Please choose one or more images to upload.");
       }
-      payload.image_base64 = await toBase64(file);
+      const sharedTitle = String(payload.title || "").trim();
+      const sharedEventName = String(payload.event_name || "").trim();
       delete payload.image;
-      await apiSend("/api/admin/event-photos", "POST", payload, token);
+
+      for (const [index, file] of files.entries()) {
+        const perFileTitle =
+          files.length === 1
+            ? sharedTitle || titleFromFileName(file.name)
+            : sharedTitle
+              ? `${sharedTitle} ${index + 1}`
+              : titleFromFileName(file.name);
+
+        await apiSend(
+          "/api/admin/event-photos",
+          "POST",
+          {
+            title: perFileTitle,
+            event_name: sharedEventName,
+            image_base64: await toBase64(file)
+          },
+          token
+        );
+      }
       form.reset();
       break;
     }
@@ -1367,6 +1382,19 @@ function flavorDescription(name) {
   };
 
   return map[name] || "Fresh shaved ice with a fun flavor profile.";
+}
+
+function titleFromFileName(fileName) {
+  const base = String(fileName || "")
+    .replace(/\.[^.]+$/, "")
+    .replace(/[-_]+/g, " ")
+    .trim();
+
+  if (!base) {
+    return "Photo";
+  }
+
+  return base.replace(/\b\w/g, (character) => character.toUpperCase());
 }
 
 function createSnowflakes() {

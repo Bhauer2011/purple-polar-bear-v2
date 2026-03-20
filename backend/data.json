@@ -127,45 +127,43 @@
   "event_photos": [
     {
       "id": "38c280ec-bd89-4526-a6a7-2c267c0a3901",
-      "title": "Purple Bear #1",
-      "event_name": "Spring Market Pop-Up",
-      "image_base64": "/assets/gallery/portrait-1.svg",
+      "title": "IMG 8654",
+      "event_name": "",
+      "image_base64": "/assets/gallery/user-photos/IMG_8654.JPEG",
+      "featured": true,
       "created_at": "2026-03-18T23:10:20.000000"
     },
     {
       "id": "3d2ac79e-9f19-4443-92b5-c1953604e902",
-      "title": "Serving at Sunset",
-      "event_name": "Summer Street Fair",
-      "image_base64": "/assets/gallery/portrait-2.svg",
+      "title": "IMG 8506",
+      "event_name": "",
+      "image_base64": "/assets/gallery/user-photos/IMG_8506.JPEG",
+      "featured": true,
       "created_at": "2026-03-18T23:10:21.000000"
     },
     {
       "id": "8d8241de-ef01-477e-a191-0a7a15fc1503",
-      "title": "School Spirit Stop",
-      "event_name": "School Fundraiser Night",
-      "image_base64": "/assets/gallery/square-1.svg",
+      "title": "IMG 8524",
+      "event_name": "",
+      "image_base64": "/assets/gallery/user-photos/IMG_8524.JPEG",
+      "featured": false,
       "created_at": "2026-03-18T23:10:22.000000"
     },
     {
       "id": "0a69af5c-179d-41fe-86c6-2d8f4d90f804",
-      "title": "Lights Night Crowd",
-      "event_name": "Holiday Tree Lighting",
-      "image_base64": "/assets/gallery/landscape-1.svg",
+      "title": "IMG 5504",
+      "event_name": "",
+      "image_base64": "/assets/gallery/user-photos/IMG_5504.jpg",
+      "featured": false,
       "created_at": "2026-03-18T23:10:23.000000"
     },
     {
       "id": "62667f62-4387-4443-b7d8-2531cc219405",
-      "title": "Ball Field Setup",
-      "event_name": "Little League Opening Day",
-      "image_base64": "/assets/gallery/wide-1.svg",
+      "title": "IMG 8396",
+      "event_name": "",
+      "image_base64": "/assets/gallery/user-photos/IMG_8396.JPEG",
+      "featured": false,
       "created_at": "2026-03-18T23:10:24.000000"
-    },
-    {
-      "id": "e4ce92f2-b212-4447-b8d8-4e4580f24d06",
-      "title": "Cooling Off by the Lake",
-      "event_name": "Community Splash Day",
-      "image_base64": "/assets/gallery/pano-1.svg",
-      "created_at": "2026-03-18T23:10:25.000000"
     }
   ],
   "reviews": [
