@@ -519,6 +519,10 @@ body.home-route .app-shell {
   border-radius: 18px;
 }
 
+body.theme-light .nav-card {
+  background: #e2f2fb;
+}
+
 .nav-card-link {
   text-decoration: none;
 }
@@ -889,6 +893,10 @@ body.home-route .app-shell {
   text-align: center;
   line-height: 1.6;
   font-size: 1.05rem;
+}
+
+body.theme-light .about-home-copy {
+  color: var(--text-muted);
 }
 
 .share-row {
