@@ -1,7 +1,7 @@
 :root {
   color-scheme: light;
-  --bg: #dff1fb;
-  --bg-alt: #cfe6f5;
+  --bg: #c7f5ff;
+  --bg-alt: #b9e9f4;
   --panel: rgba(228, 242, 251, 0.9);
   --panel-strong: #d4ebf8;
   --panel-light: #f7fcff;
@@ -39,7 +39,7 @@ body {
   padding-bottom: 320px;
   background:
     radial-gradient(circle at top, rgba(255, 255, 255, 0.82), rgba(255, 255, 255, 0) 36%),
-    linear-gradient(180deg, #e7f6ff 0%, #d7eef9 42%, #cfe6f4 100%);
+    linear-gradient(180deg, #defaff 0%, #cff6ff 42%, #c7f5ff 100%);
   color: var(--text);
 }
 
@@ -112,14 +112,14 @@ img {
 
 .settled-flake {
   position: absolute;
-  color: rgba(255, 255, 255, 0.96);
-  text-shadow: 0 0 8px rgba(126, 217, 255, 0.35);
+  color: #bababa;
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.28);
 }
 
 .snowflake {
   position: absolute;
   top: -10%;
-  color: rgba(255, 255, 255, 0.72);
+  color: #bababa;
   font-size: 16px;
   animation: drift linear infinite;
 }
@@ -1196,9 +1196,13 @@ body.home-route .review-card-button {
   color-scheme: light;
 }
 
+body.theme-light .field select {
+  color: var(--text-muted);
+}
+
 .field select option {
   background: #ffffff;
-  color: #222222;
+  color: var(--text-muted);
 }
 
 body.theme-dark .field select {
@@ -1213,6 +1217,11 @@ body.theme-dark .field select {
 .field input::placeholder,
 .field textarea::placeholder {
   color: rgba(233, 221, 248, 0.58);
+}
+
+body.theme-light .field input::placeholder,
+body.theme-light .field textarea::placeholder {
+  color: var(--text-muted);
 }
 
 .form-message,
