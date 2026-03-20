@@ -36,7 +36,7 @@ body {
   margin: 0;
   min-height: 100vh;
   position: relative;
-  padding-bottom: 320px;
+  padding-bottom: 190px;
   background: var(--bg);
   color: var(--text);
 }
@@ -519,7 +519,7 @@ body.home-route .app-shell {
 }
 
 body.theme-light .nav-card {
-  background: #e2f2fb;
+  background: #fdf9f2;
 }
 
 .nav-card-link {
@@ -648,6 +648,10 @@ body.theme-light .nav-card {
   color: var(--panel-strong);
 }
 
+body.theme-light .photo-visual {
+  background: #fdf9f2;
+}
+
 .photo-visual img {
   width: 100%;
   height: 100%;
@@ -656,6 +660,13 @@ body.theme-light .nav-card {
 
 .photo-copy {
   padding: 14px;
+}
+
+body.theme-light .photo-card,
+body.theme-light .review-card,
+body.theme-light .event-card,
+body.theme-light .gallery-grid .photo-copy {
+  background: #fdf9f2;
 }
 
 .meta {

@@ -1452,11 +1452,11 @@ function createSnowflakes() {
   }
 
   window.setInterval(() => {
-    snowLevel = Math.min(640, snowLevel + 2.8);
+    snowLevel = Math.min(220, snowLevel + 1.5);
     if (snowbank) {
       snowbank.style.setProperty("--snow-height", `${snowLevel}px`);
-      document.body.style.paddingBottom = `${Math.max(320, 170 + snowLevel)}px`;
-      for (let count = 0; count < 6; count += 1) {
+      document.body.style.paddingBottom = `${Math.max(190, 110 + snowLevel)}px`;
+      for (let count = 0; count < 3; count += 1) {
         const settled = document.createElement("span");
         settled.className = "settled-flake";
         settled.textContent = "\u2744";
@@ -1468,7 +1468,7 @@ function createSnowflakes() {
       }
 
       const settledFlakes = snowbank.querySelectorAll(".settled-flake");
-      while (settledFlakes.length > 2600) {
+      while (settledFlakes.length > 900) {
         settledFlakes[0].remove();
       }
     }
