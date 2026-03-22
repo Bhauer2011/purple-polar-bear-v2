@@ -293,14 +293,14 @@ function renderHomePage() {
     ? `
       <section class="status-banner ${data.status.is_open ? "open" : "closed"}">
           <span class="status-dot" style="color:${data.status.is_open ? "#89ffb1" : "#ffb0b9"}"></span>
-          <div>
-            <strong>${data.status.is_open ? "Now Open" : "Currently Closed"}</strong>
-            <p>${escapeHtml(data.status.message || "Check in with us for the latest stop.")}</p>
-            <p class="meta">${escapeHtml(data.status.location || "Location updates coming soon")}</p>
-          </div>
-        </section>
-      `
-      : "";
+          <p>${escapeHtml(
+            data.status.is_open
+              ? data.status.location || "Location updates coming soon"
+              : "Currently Closed"
+          )}</p>
+      </section>
+    `
+    : "";
 
   const upcoming = (data.events || []).slice(0, 3);
   const photos = data.photos || [];
