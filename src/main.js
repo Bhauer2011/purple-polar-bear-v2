@@ -326,21 +326,21 @@ function renderHomePage() {
             <div class="menu-card-row">
               <span class="icon-badge icon-badge-menu"><img alt="Menu icon" src="${menuIconUrl}" /></span>
               <div>
-                <h2>Our Flavor Menu</h2>
-                <p>Explore all our handcrafted snowball flavors, toppings, and specialties.</p>
+                <h2>Browse Flavors</h2>
+                <p>See flavors, toppings, and specials.</p>
               </div>
             </div>
           </a>
           <div class="side-by-side">
             <a class="nav-card nav-card-link" href="#/events">
               <span class="icon-badge icon-badge-calendar"><img alt="Events icon" src="${eventsIconUrl}" /></span>
-              <h3>Locations & Events</h3>
-              <p>Find out where we&rsquo;ll be popping up next.</p>
+              <h3>Find Events</h3>
+              <p>See our next stops.</p>
             </a>
             <a class="nav-card nav-card-link" href="#/request-event">
               <span class="icon-badge icon-badge-plus"><img alt="Request event icon" src="${requestIconUrl}" /></span>
-              <h3>Book an Event</h3>
-              <p>Bring Purple Polar Bear to your next party, school, or community event.</p>
+              <h3>Book Event</h3>
+              <p>Book us for parties and school events.</p>
             </a>
           </div>
         </div>
@@ -364,7 +364,7 @@ function renderHomePage() {
             <h2>📷 Event Photos</h2>
             <p>Featured moments stay here on the homepage. Open the gallery to see the full set.</p>
           </div>
-          <a class="inline-button" href="#/photos">View all</a>
+          <a class="inline-button" href="#/photos">View Photos</a>
         </div>
         <div class="photos-grid featured-photos-grid">
           ${homepagePhotos
@@ -440,7 +440,7 @@ function renderHomePage() {
               .join("") || `<div class="empty-state">Reviews will appear here once approved in the admin panel.</div>`}
           </div>
         </div>
-        <button class="button review-open-button review-cta-home" data-action="open-review-modal" type="button">★ Write a Review</button>
+        <button class="button review-open-button review-cta-home" data-action="open-review-modal" type="button">★ Leave Review</button>
       </section>
 
       <section class="page home-detail-sections">
@@ -449,7 +449,7 @@ function renderHomePage() {
             <h2>Upcoming Events</h2>
             <p>Your original event preview lives here with a cleaner web layout.</p>
           </div>
-          <a class="inline-button" href="#/events">View all</a>
+          <a class="inline-button" href="#/events">View Events</a>
         </div>
         <div class="events-grid">
           ${upcoming
@@ -636,7 +636,7 @@ function renderEventsPage() {
       <section class="events-cta">
         <h2>Want us at your event?</h2>
         <p>We'd love to bring Purple Polar Bear snow balls to your special occasion!</p>
-        <a class="button app-purple-button" href="#/request-event">Request Event →</a>
+        <a class="button app-purple-button" href="#/request-event">Book Event</a>
       </section>
     </section>
   `;
@@ -689,7 +689,7 @@ function renderRequestPage() {
             ></textarea>
           </div>
         </div>
-        <button class="button app-purple-button" type="submit">➤ Submit Request</button>
+        <button class="button app-purple-button" type="submit">Send Request</button>
       </form>
     </section>
   `;
@@ -811,7 +811,7 @@ function renderReviewModal() {
           </div>
           <div class="action-row">
             <button class="ghost-button" data-action="close-review-modal" type="button">Cancel</button>
-            <button class="button" type="submit">Submit Review</button>
+            <button class="button" type="submit">Send Review</button>
           </div>
         </form>
       </div>
@@ -867,9 +867,9 @@ function renderAdminDashboard() {
       </div>
 
       <div class="action-row">
-        <button class="ghost-button" data-action="refresh-admin" type="button">Refresh Dashboard</button>
-        <a class="ghost-button ghost-link-button" href="#/">Back to Front End</a>
-        <button class="ghost-button" data-action="logout-admin" type="button">Log Out</button>
+        <button class="ghost-button" data-action="refresh-admin" type="button">Refresh</button>
+        <a class="ghost-button ghost-link-button" href="#/">View Site</a>
+        <button class="ghost-button" data-action="logout-admin" type="button">Sign Out</button>
       </div>
     </section>
   `;
@@ -905,7 +905,7 @@ function renderAdminSection(data) {
                 <input id="status-location" name="location" value="${escapeHtml(data.status?.location || "")}" />
               </div>
             </div>
-            <button class="button" type="submit">Save Status</button>
+            <button class="button" type="submit">Save</button>
           </form>
         </section>
       `;
@@ -996,8 +996,8 @@ function renderAdminSection(data) {
                       <p>${escapeHtml(request.event_date)} · ${escapeHtml(request.location)}</p>
                       <p>${escapeHtml(request.message || "")}</p>
                       <div class="action-row">
-                        <button class="ghost-button" data-action="update-request" data-id="${request.id}" data-status="approved" type="button">Mark Approved</button>
-                        <button class="ghost-button" data-action="update-request" data-id="${request.id}" data-status="pending" type="button">Mark Pending</button>
+                        <button class="ghost-button" data-action="update-request" data-id="${request.id}" data-status="approved" type="button">Approve</button>
+                        <button class="ghost-button" data-action="update-request" data-id="${request.id}" data-status="pending" type="button">Set Pending</button>
                       </div>
                     </article>
                   `
@@ -1027,7 +1027,7 @@ function renderAdminSection(data) {
                 <input id="photo-file" name="image" type="file" accept="image/*" multiple required />
               </div>
             </div>
-            <button class="button" type="submit">Upload Photo(s)</button>
+            <button class="button" type="submit">Upload Photos</button>
           </form>
           <div class="photos-grid">
             ${data.photos
@@ -1049,7 +1049,7 @@ function renderAdminSection(data) {
                         <button class="ghost-button" data-action="toggle-featured-photo" data-id="${photo.id}" data-featured="${
                           photo.featured ? "false" : "true"
                         }" type="button">
-                          ${photo.featured ? "Remove from Homepage" : "Feature on Homepage"}
+                          ${photo.featured ? "Remove Feature" : "Feature Photo"}
                         </button>
                         <button class="ghost-button" data-action="delete-photo" data-id="${photo.id}" type="button">Delete</button>
                       </div>
@@ -1070,7 +1070,7 @@ function renderAdminSection(data) {
               <label for="about-content">Homepage copy</label>
               <textarea id="about-content" name="content">${escapeHtml(data.about?.content || "")}</textarea>
             </div>
-            <button class="button" type="submit">Save About Section</button>
+            <button class="button" type="submit">Save Copy</button>
           </form>
         </section>
       `;
@@ -1090,7 +1090,7 @@ function renderAdminSection(data) {
                       <button class="ghost-button" data-action="approve-review" data-id="${review.id}" data-approved="${
                         review.approved ? "false" : "true"
                       }" type="button">
-                        ${review.approved ? "Unapprove" : "Approve"}
+                        ${review.approved ? "Hide Review" : "Approve"}
                       </button>
                       <button class="ghost-button" data-action="delete-review" data-id="${review.id}" type="button">Delete</button>
                     </div>
