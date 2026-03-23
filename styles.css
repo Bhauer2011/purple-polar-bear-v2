@@ -1440,29 +1440,93 @@ body.home-route .info-card {
 }
 
 @media (max-width: 639px) {
+  body.home-route .app-shell {
+    padding-top: 10px;
+  }
+
   .page {
-    gap: 12px;
+    gap: 10px;
   }
 
   .hero.hero-logo-only {
-    min-height: 306px;
+    min-height: 248px;
+  }
+
+  .hero-logo-image {
+    object-position: center 8%;
+  }
+
+  .status-banner {
+    padding: 5px 10px;
+    gap: 8px;
+    border-radius: 12px;
+  }
+
+  .status-dot {
+    width: 9px;
+    height: 9px;
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.08);
+  }
+
+  .status-banner p {
+    font-size: 0.78rem;
+  }
+
+  .card-grid {
+    gap: 10px;
+  }
+
+  .nav-card.menu-feature {
+    min-height: 84px;
+    padding: 10px 12px;
+  }
+
+  .menu-card-row {
+    gap: 10px;
+  }
+
+  .icon-badge {
+    width: 56px;
+    height: 56px;
+  }
+
+  .icon-badge-menu img,
+  .icon-badge-calendar img,
+  .icon-badge-plus img {
+    width: 52px;
+    height: 52px;
   }
 
   .menu-feature h2 {
-    font-size: 1.1rem;
+    font-size: 0.9rem;
+    line-height: 1.08;
   }
 
   .menu-feature p {
-    font-size: 0.92rem;
+    font-size: 0.76rem;
+    line-height: 1.14;
+    max-width: 24ch;
+  }
+
+  .side-by-side {
+    gap: 10px;
+  }
+
+  .side-by-side .nav-card {
+    min-height: 96px;
+    padding: 10px 10px 12px;
+    gap: 4px;
   }
 
   .side-by-side .nav-card h3 {
-    font-size: 1rem;
+    font-size: 0.8rem;
+    line-height: 1.05;
   }
 
   .side-by-side .nav-card p {
-    font-size: 0.84rem;
-    line-height: 1.35;
+    font-size: 0.68rem;
+    line-height: 1.08;
+    max-width: 14ch;
   }
 
   .app-page-top {
