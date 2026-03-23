@@ -339,8 +339,8 @@ function renderHomePage() {
             </a>
             <a class="nav-card nav-card-link" href="#/request-event">
               <span class="icon-badge icon-badge-plus"><img alt="Request event icon" src="${requestIconUrl}" /></span>
-              <h3>Book Event</h3>
-              <p>Book us for parties and school events.</p>
+              <h3>Book Events</h3>
+              <p>Book your next event.</p>
             </a>
           </div>
         </div>
