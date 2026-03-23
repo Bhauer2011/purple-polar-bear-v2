@@ -26,6 +26,7 @@ const state = {
   data: null,
   adminData: null,
   adminSection: "dashboard",
+  eventsMonth: "",
   selectedPhotoId: "",
   selectedReviewId: "",
   reviewModalOpen: false,
@@ -495,7 +496,7 @@ function renderMenuPage() {
       ${renderErrorCard()}
       <header class="app-page-top">
         <a class="back-link" href="#/">←</a>
-        <h1>Our Menu</h1>
+        <h1>Browse Flavors</h1>
         <span></span>
       </header>
       <div class="page menu-page">
@@ -568,16 +569,19 @@ function renderEventsPage() {
   const events = state.data?.events || [];
   const upcoming = events.filter((event) => isUpcomingEvent(event.date));
   const past = events.filter((event) => !isUpcomingEvent(event.date));
+  const visibleMonth = getVisibleEventsMonth(events);
+  const eventCalendar = renderEventCalendar(events, visibleMonth);
 
   return `
     <section class="page">
       ${renderErrorCard()}
       <header class="app-page-top">
         <a class="back-link" href="#/">←</a>
-        <h1>Events & Locations</h1>
+        <h1>Find Events</h1>
         <span></span>
       </header>
       <p class="screen-subtitle">Find us around town at these upcoming events and locations</p>
+      ${eventCalendar}
 
       <section class="page">
         <div class="events-grid single-column">
@@ -648,7 +652,7 @@ function renderRequestPage() {
       ${renderErrorCard()}
       <header class="app-page-top">
         <a class="back-link" href="#/">←</a>
-        <h1>Request Event</h1>
+        <h1>Book Events</h1>
         <span></span>
       </header>
 
@@ -1285,6 +1289,12 @@ async function handleClick(event) {
     } else if (action === "share-site") {
       await shareSite(button.dataset);
       return;
+    } else if (action === "events-month-prev") {
+      shiftEventsMonth(-1);
+      return;
+    } else if (action === "events-month-next") {
+      shiftEventsMonth(1);
+      return;
     } else if (action === "refresh-admin") {
       state.adminData = await loadAdminData(token);
     } else if (action === "logout-admin") {
@@ -1405,6 +1415,102 @@ async function shareSite(dataset) {
   } catch {
     window.alert(`${shareText} ${targetUrl}`);
   }
+}
+
+function getVisibleEventsMonth(events) {
+  if (state.eventsMonth) {
+    return state.eventsMonth;
+  }
+
+  const firstUpcoming = events
+    .filter((event) => isUpcomingEvent(event.date))
+    .map((event) => new Date(event.date))
+    .find((date) => !Number.isNaN(date.getTime()));
+
+  const base = firstUpcoming || new Date();
+  return `${base.getFullYear()}-${String(base.getMonth() + 1).padStart(2, "0")}`;
+}
+
+function shiftEventsMonth(offset) {
+  const [yearText, monthText] = (state.eventsMonth || getVisibleEventsMonth(state.data?.events || [])).split("-");
+  const anchor = new Date(Number(yearText), Number(monthText) - 1 + offset, 1);
+  state.eventsMonth = `${anchor.getFullYear()}-${String(anchor.getMonth() + 1).padStart(2, "0")}`;
+  render();
+}
+
+function renderEventCalendar(events, monthKey) {
+  const [yearText, monthText] = monthKey.split("-");
+  const year = Number(yearText);
+  const monthIndex = Number(monthText) - 1;
+  const monthStart = new Date(year, monthIndex, 1);
+  const firstGridDay = new Date(monthStart);
+  firstGridDay.setDate(1 - monthStart.getDay());
+  const monthLabel = monthStart.toLocaleDateString("en-US", { month: "long", year: "numeric" });
+  const bookedDates = new Map();
+
+  events.forEach((event) => {
+    const date = new Date(event.date);
+    if (Number.isNaN(date.getTime())) {
+      return;
+    }
+    const key = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, "0")}-${String(date.getDate()).padStart(2, "0")}`;
+    const existing = bookedDates.get(key) || [];
+    existing.push(event.title || "Booked event");
+    bookedDates.set(key, existing);
+  });
+
+  const weekdayLabels = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  const cells = [];
+  for (let index = 0; index < 42; index += 1) {
+    const day = new Date(firstGridDay);
+    day.setDate(firstGridDay.getDate() + index);
+    const dayKey = `${day.getFullYear()}-${String(day.getMonth() + 1).padStart(2, "0")}-${String(day.getDate()).padStart(2, "0")}`;
+    const isCurrentMonth = day.getMonth() === monthIndex;
+    const booked = bookedDates.get(dayKey) || [];
+    const classes = ["calendar-day"];
+    if (!isCurrentMonth) {
+      classes.push("outside-month");
+    }
+    if (booked.length) {
+      classes.push("booked");
+    }
+    if (sameCalendarDay(day, new Date())) {
+      classes.push("today");
+    }
+    cells.push(`
+      <div class="${classes.join(" ")}" title="${escapeHtml(booked.join(" • "))}">
+        <span class="calendar-date">${day.getDate()}</span>
+        ${booked.length ? `<span class="calendar-count">${booked.length}</span>` : `<span class="calendar-count empty"></span>`}
+      </div>
+    `);
+  }
+
+  return `
+    <section class="event-calendar-card">
+      <div class="calendar-topline">
+        <button class="ghost-button calendar-nav-button" data-action="events-month-prev" type="button" aria-label="Previous month">←</button>
+        <div>
+          <h2>${escapeHtml(monthLabel)}</h2>
+          <p>Booked dates are highlighted below.</p>
+        </div>
+        <button class="ghost-button calendar-nav-button" data-action="events-month-next" type="button" aria-label="Next month">→</button>
+      </div>
+      <div class="calendar-weekdays">
+        ${weekdayLabels.map((label) => `<span>${label}</span>`).join("")}
+      </div>
+      <div class="calendar-grid">
+        ${cells.join("")}
+      </div>
+    </section>
+  `;
+}
+
+function sameCalendarDay(left, right) {
+  return (
+    left.getFullYear() === right.getFullYear() &&
+    left.getMonth() === right.getMonth() &&
+    left.getDate() === right.getDate()
+  );
 }
 
 function flavorDescription(name) {
