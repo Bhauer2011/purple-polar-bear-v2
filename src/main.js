@@ -382,7 +382,6 @@ function renderHomePage() {
         <div class="section-heading">
           <div>
             <h2>📷 Event Photos</h2>
-            <p>Featured moments stay here on the homepage. Open the gallery to see the full set.</p>
           </div>
           <a class="inline-button" href="#/photos">View Photos</a>
         </div>
@@ -425,7 +424,6 @@ function renderHomePage() {
         <div class="section-heading">
           <div>
             <h2>⭐ Customer Reviews</h2>
-            <p>Your original event preview lives here with a cleaner web layout.</p>
           </div>
         </div>
         <div class="reviews-scroll">
@@ -467,7 +465,6 @@ function renderHomePage() {
         <div class="section-heading">
           <div>
             <h2>Upcoming Events</h2>
-            <p>Your original event preview lives here with a cleaner web layout.</p>
           </div>
           <a class="inline-button" href="#/events">View Events</a>
         </div>
@@ -1600,5 +1597,7 @@ function createSnowflakes() {
     }
   }, 450);
 }
+
+
 
 

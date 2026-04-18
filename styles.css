@@ -1260,13 +1260,11 @@ body.home-route .event-card {
 }
 
 body.home-route .event-card {
-  min-height: 150px;
-  height: 150px;
+  min-height: 164px;
   display: grid;
   align-content: start;
   gap: 8px;
   padding: 14px 16px;
-  overflow: hidden;
 }
 
 body.home-route .event-card .pill {
@@ -1287,10 +1285,8 @@ body.home-route .event-card p {
 }
 
 body.home-route .event-card p:not(.meta) {
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
+  display: block;
+  overflow: visible;
 }
 
 body.home-route .event-card .meta {
