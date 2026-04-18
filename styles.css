@@ -705,7 +705,7 @@ body.theme-light .photo-visual {
 
 .menu-item {
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(249, 241, 255, 0.95));
-  color: var(--text-dark);
+  color: #3f394a;
 }
 
 .menu-item-simple {
@@ -1014,13 +1014,25 @@ body.theme-dark .calendar-day.booked {
   display: block;
   margin-bottom: 4px;
   font-size: var(--fs-card-title);
-  color: var(--surface-text);
+  color: #3a3545;
 }
 
 .menu-item-simple .meta {
-  color: var(--surface-muted);
+  color: #6f677d;
   font-size: var(--fs-small);
   font-style: italic;
+}
+
+body.theme-dark .menu-item {
+  color: #383243;
+}
+
+body.theme-dark .menu-item-simple strong {
+  color: #342f40;
+}
+
+body.theme-dark .menu-item-simple .meta {
+  color: #625b70;
 }
 
 .request-form-panel {
