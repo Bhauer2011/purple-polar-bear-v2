@@ -18,9 +18,13 @@ app = FastAPI(title="Purple Polar Bear API")
 api = FastAPI()
 security = HTTPBearer()
 
-ADMIN_USERNAME = "admin"
-ADMIN_PASSWORD = "admin123"
-ADMIN_TOKEN = "admin_token"
+ADMIN_ACCOUNTS = {
+    "Administrator": "P@ssW0rd!",
+    "ppbadmin": "snowball123",
+}
+ADMIN_TOKENS = {
+    username: f"admin_token_{username.lower()}" for username in ADMIN_ACCOUNTS
+}
 
 
 class BusinessStatus(BaseModel):
@@ -140,7 +144,7 @@ class AdminLogin(BaseModel):
 
 
 def verify_admin(credentials: HTTPAuthorizationCredentials = Depends(security)) -> bool:
-    if credentials.credentials != ADMIN_TOKEN:
+    if credentials.credentials not in ADMIN_TOKENS.values():
         raise HTTPException(status_code=401, detail="Invalid credentials")
     return True
 
@@ -413,8 +417,11 @@ def create_review(review: ReviewCreate) -> dict:
 
 @app.post("/api/admin/login")
 def admin_login(login: AdminLogin) -> dict:
-    if login.username == ADMIN_USERNAME and login.password == ADMIN_PASSWORD:
-        return {"token": ADMIN_TOKEN, "message": "Login successful"}
+    if ADMIN_ACCOUNTS.get(login.username) == login.password:
+        return {
+            "token": ADMIN_TOKENS[login.username],
+            "message": "Login successful",
+        }
     raise HTTPException(status_code=401, detail="Invalid credentials")
 
 
