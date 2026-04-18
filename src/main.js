@@ -14,6 +14,7 @@ const menuToggle = document.querySelector("#menu-toggle");
 const themeToggle = document.querySelector("#theme-toggle");
 const snowbank = document.querySelector(".snowbank");
 const logoUrl = "/assets/ppb_main_hero_20260322.png";
+const eventRequestEmail = "bhauer2011@gmail.com";
 const menuIconUrl = "/assets/icons/menu.svg";
 const eventsIconUrl = "/assets/icons/events.svg";
 const requestIconUrl = "/assets/icons/request.svg";
@@ -115,6 +116,24 @@ function getPhotoSrc(imageBase64) {
   }
 
   return `data:image/jpeg;base64,${imageBase64}`;
+}
+
+function buildEventRequestMailto(payload) {
+  const subject = `New Event Request - ${payload.name || "Purple Polar Bear"}`;
+  const body = [
+    "New Purple Polar Bear event request",
+    "",
+    `Name: ${payload.name || ""}`,
+    `Email: ${payload.email || ""}`,
+    `Phone: ${payload.phone || ""}`,
+    `Event Date: ${payload.event_date || ""}`,
+    `Location: ${payload.location || ""}`,
+    "",
+    "Details:",
+    payload.message || ""
+  ].join("\n");
+
+  return `mailto:${eventRequestEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 }
 
 function getRoute() {
@@ -1156,7 +1175,8 @@ async function handleSubmit(event) {
       const payload = Object.fromEntries(new FormData(form).entries());
       await apiSend("/api/event-requests", "POST", payload);
       form.reset();
-      window.alert("Event request submitted successfully.");
+      window.alert("Event request submitted successfully. An email draft will open next.");
+      window.location.href = buildEventRequestMailto(payload);
     } else if (kind === "review") {
       const payload = Object.fromEntries(new FormData(form).entries());
       payload.rating = Number(payload.rating);
