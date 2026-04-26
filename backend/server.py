@@ -1,7 +1,11 @@
 from __future__ import annotations
 
 import json
+import os
+import re
+import smtplib
 from datetime import datetime
+from email.message import EmailMessage
 from pathlib import Path
 from typing import Optional
 from uuid import uuid4
@@ -25,6 +29,13 @@ ADMIN_ACCOUNTS = {
 ADMIN_TOKENS = {
     username: f"admin_token_{username.lower()}" for username in ADMIN_ACCOUNTS
 }
+EMAIL_RE = re.compile(r"^[^@\s]+@[^@\s]+\.[^@\s]+$")
+SMTP_HOST = os.getenv("PPB_SMTP_HOST", "").strip()
+SMTP_PORT = int(os.getenv("PPB_SMTP_PORT", "587") or "587")
+SMTP_USERNAME = os.getenv("PPB_SMTP_USERNAME", "").strip()
+SMTP_PASSWORD = os.getenv("PPB_SMTP_PASSWORD", "").strip()
+SMTP_FROM = os.getenv("PPB_SMTP_FROM", "").strip()
+SMTP_USE_TLS = os.getenv("PPB_SMTP_USE_TLS", "true").strip().lower() not in {"0", "false", "no", "off"}
 
 
 class BusinessStatus(BaseModel):
@@ -62,6 +73,10 @@ class EventRequest(BaseModel):
     location: str
     message: str = ""
     status: str = "pending"
+    notification_sent: bool = False
+    notification_message: str = ""
+    notification_recipient_count: int = 0
+    notification_sent_at: str = ""
     created_at: str = Field(default_factory=lambda: datetime.utcnow().isoformat())
 
 
@@ -143,6 +158,16 @@ class AdminLogin(BaseModel):
     password: str
 
 
+class NotificationEmail(BaseModel):
+    id: str = Field(default_factory=lambda: str(uuid4()))
+    email: str
+    created_at: str = Field(default_factory=lambda: datetime.utcnow().isoformat())
+
+
+class NotificationEmailCreate(BaseModel):
+    email: str
+
+
 def verify_admin(credentials: HTTPAuthorizationCredentials = Depends(security)) -> bool:
     if credentials.credentials not in ADMIN_TOKENS.values():
         raise HTTPException(status_code=401, detail="Invalid credentials")
@@ -151,6 +176,61 @@ def verify_admin(credentials: HTTPAuthorizationCredentials = Depends(security)) 
 
 def now_iso() -> str:
     return datetime.utcnow().isoformat()
+
+
+def is_valid_email_address(value: str) -> bool:
+    return bool(EMAIL_RE.match(value.strip()))
+
+
+def get_notification_recipients(data: dict) -> list[str]:
+    return [
+        entry.get("email", "").strip()
+        for entry in data.get("notification_emails", [])
+        if entry.get("email", "").strip()
+    ]
+
+
+def send_event_request_notification(request_record: dict, recipients: list[str]) -> tuple[bool, str]:
+    if not recipients:
+        return False, "No notification recipients configured."
+
+    if not SMTP_HOST or not SMTP_FROM:
+        return False, "SMTP email delivery is not configured."
+
+    message = EmailMessage()
+    message["Subject"] = f"New Purple Polar Bear Event Request - {request_record.get('name', 'New Request')}"
+    message["From"] = SMTP_FROM
+    message["To"] = ", ".join(recipients)
+    message.set_content(
+        "\n".join(
+            [
+                "New Purple Polar Bear event request",
+                "",
+                f"Name: {request_record.get('name', '')}",
+                f"Email: {request_record.get('email', '')}",
+                f"Phone: {request_record.get('phone', '')}",
+                f"Event Date: {request_record.get('event_date', '')}",
+                f"Location: {request_record.get('location', '')}",
+                f"Status: {request_record.get('status', 'pending')}",
+                "",
+                "Details:",
+                request_record.get("message", "") or "",
+            ]
+        )
+    )
+
+    try:
+        with smtplib.SMTP(SMTP_HOST, SMTP_PORT, timeout=20) as server:
+            server.ehlo()
+            if SMTP_USE_TLS:
+                server.starttls()
+                server.ehlo()
+            if SMTP_USERNAME:
+                server.login(SMTP_USERNAME, SMTP_PASSWORD)
+            server.send_message(message)
+        return True, f"Sent to {len(recipients)} recipient(s)."
+    except Exception as exc:
+        return False, f"Email notification failed: {exc}"
 
 
 def build_sample_events() -> list[dict]:
@@ -321,6 +401,9 @@ def default_data() -> dict:
             MenuItem(name="Rainbow Blast", emoji="🍧").model_dump(),
         ],
         "event_requests": [],
+        "notification_emails": [
+            NotificationEmail(email="bhauer2011@gmail.com").model_dump(),
+        ],
         "upcoming_events": build_sample_events(),
         "about_us": AboutUs(
             content=(
@@ -342,6 +425,9 @@ def load_data() -> dict:
         return data
     data = json.loads(DATA_FILE.read_text(encoding="utf-8"))
     changed = False
+    if "notification_emails" not in data:
+        data["notification_emails"] = default_data()["notification_emails"]
+        changed = True
     for index, photo in enumerate(data.get("event_photos", [])):
       if "featured" not in photo:
           photo["featured"] = index < 2
@@ -401,9 +487,16 @@ def get_reviews() -> list[dict]:
 def create_event_request(request: EventRequestCreate) -> dict:
     data = load_data()
     record = EventRequest(**request.model_dump()).model_dump()
+    record["notification_recipient_count"] = 0
+    record["notification_sent"] = False
+    record["notification_message"] = ""
+    record["notification_sent_at"] = ""
     data["event_requests"].append(record)
     save_data(data)
-    return {"message": "Event request submitted successfully", "id": record["id"]}
+    return {
+        "message": "Event request submitted successfully",
+        "id": record["id"],
+    }
 
 
 @app.post("/api/reviews")
@@ -476,6 +569,41 @@ def delete_upcoming_event(event_id: str) -> dict:
 @app.get("/api/admin/event-requests", dependencies=[Depends(verify_admin)])
 def get_event_requests() -> list[dict]:
     return sort_by_created(load_data()["event_requests"])
+
+
+@app.get("/api/admin/notification-emails", dependencies=[Depends(verify_admin)])
+def get_notification_emails() -> list[dict]:
+    return sort_by_created(load_data().get("notification_emails", []), reverse=False)
+
+
+@app.post("/api/admin/notification-emails", dependencies=[Depends(verify_admin)])
+def create_notification_email(payload: NotificationEmailCreate) -> dict:
+    email = payload.email.strip()
+    if not is_valid_email_address(email):
+        raise HTTPException(status_code=400, detail="Please enter a valid email address.")
+
+    data = load_data()
+    existing = data.setdefault("notification_emails", [])
+    if any(item.get("email", "").strip().lower() == email.lower() for item in existing):
+        raise HTTPException(status_code=400, detail="That notification email already exists.")
+
+    record = NotificationEmail(email=email).model_dump()
+    existing.append(record)
+    save_data(data)
+    return {"message": "Notification email added successfully", "id": record["id"]}
+
+
+@app.delete("/api/admin/notification-emails/{recipient_id}", dependencies=[Depends(verify_admin)])
+def delete_notification_email(recipient_id: str) -> dict:
+    data = load_data()
+    before = len(data.get("notification_emails", []))
+    data["notification_emails"] = [
+        item for item in data.get("notification_emails", []) if item.get("id") != recipient_id
+    ]
+    if len(data["notification_emails"]) == before:
+        raise HTTPException(status_code=404, detail="Notification email not found")
+    save_data(data)
+    return {"message": "Notification email removed successfully"}
 
 
 @app.put("/api/admin/event-requests/{request_id}/status", dependencies=[Depends(verify_admin)])
