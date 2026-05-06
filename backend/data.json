@@ -1,275 +1,440 @@
 {
-  "business_status": {
-    "id": "a444dd1e-136c-4191-bada-b5dfc5ab65f2",
-    "is_open": false,
-    "message": "",
-    "location": "",
-    "updated_at": "2026-03-19T00:02:32.560498"
-  },
-  "menu_items": [
-    {
-      "id": "3e003380-c5bb-4810-b20e-1cbc52dcb471",
-      "name": "Blue Raspberry",
-      "emoji": "\ud83c\udf67",
-      "created_at": "2026-03-18T19:59:08.892935"
-    },
-    {
-      "id": "398bc750-97d5-4db0-8648-f0cb6de61142",
-      "name": "Grape",
-      "emoji": "\ud83c\udf67",
-      "created_at": "2026-03-18T19:59:08.892935"
-    },
-    {
-      "id": "6729bcec-9a22-46a6-9d12-fba485a8e795",
-      "name": "Orange",
-      "emoji": "\ud83c\udf67",
-      "created_at": "2026-03-18T19:59:08.892935"
-    },
-    {
-      "id": "47341bbd-008e-4ff3-a484-893e5c6e49c5",
-      "name": "Polar Bear Special",
-      "emoji": "\ud83c\udf67",
-      "created_at": "2026-03-18T19:59:08.892935"
-    },
-    {
-      "id": "7bd6758d-0196-42f7-94bd-6af23666142e",
-      "name": "Purple Rain",
-      "emoji": "\ud83c\udf67",
-      "created_at": "2026-03-18T19:59:08.892935"
-    },
-    {
-      "id": "e69f7d19-88b7-464b-b402-3cd20d6a969e",
-      "name": "Rainbow Blast",
-      "emoji": "\ud83c\udf67",
-      "created_at": "2026-03-18T19:59:08.892935"
-    }
-  ],
-  "event_requests": [],
-  "upcoming_events": [
-    {
-      "id": "9f9d0701-aed3-4df1-8c71-d2a3f1a2b901",
-      "title": "Spring Market Pop-Up",
-      "date": "2025-04-12T11:00:00",
-      "location": "Riverside Artisan Market",
-      "description": "An early-season stop with bright flavors and family foot traffic all afternoon.",
-      "created_at": "2026-03-18T23:10:10.000000"
-    },
-    {
-      "id": "ccf3f6a5-b55d-4da1-b3e9-fad1f1f4c902",
-      "title": "Summer Street Fair",
-      "date": "2025-07-20T14:00:00",
-      "location": "Downtown Market Square",
-      "description": "A fun afternoon serving neighborhood favorites during the summer fair.",
-      "created_at": "2026-03-18T23:10:11.000000"
-    },
-    {
-      "id": "8b3d8b48-50e0-4c56-9af4-95fcf2f8d903",
-      "title": "School Fundraiser Night",
-      "date": "2025-09-13T18:30:00",
-      "location": "Riverside Elementary",
-      "description": "We set up at the school fundraiser with classic flavors and Rainbow Blast.",
-      "created_at": "2026-03-18T23:10:12.000000"
-    },
-    {
-      "id": "3f5f8754-2f7d-45db-87f0-c39096f23904",
-      "title": "Holiday Tree Lighting",
-      "date": "2025-12-05T17:45:00",
-      "location": "City Hall Plaza",
-      "description": "A festive evening event with lights, music, and cold treats for the crowd.",
-      "created_at": "2026-03-18T23:10:13.000000"
-    },
-    {
-      "id": "eebcdff9-bb2b-4ff7-a9df-722f2adce905",
-      "title": "Little League Opening Day",
-      "date": "2026-04-06T12:30:00",
-      "location": "Northside Ball Fields",
-      "description": "Purple Polar Bear favorites served by the concession area through the afternoon games.",
-      "created_at": "2026-03-18T23:10:14.000000"
-    },
-    {
-      "id": "33e900ec-ae2f-4f0a-a8bb-6d8ea3b53a07",
-      "title": "Spring Carnival Weekend",
-      "date": "2026-05-02T15:00:00",
-      "location": "Pine Grove Community Center",
-      "description": "An afternoon stop with family flavors, music, and a steady event crowd.",
-      "created_at": "2026-03-18T23:10:14.500000"
-    },
-    {
-      "id": "b44730f3-7074-45f1-8c85-1a04d940fa06",
-      "title": "Community Splash Day",
-      "date": "2026-06-21T13:00:00",
-      "location": "Lakeside Family Park",
-      "description": "A warm-weather park event with music, water games, and our signature snow ball specials.",
-      "created_at": "2026-03-18T23:10:15.000000"
-    },
-    {
-      "id": "5db430c1-0f96-4bb5-a115-f4a10d9f4908",
-      "title": "Fourth of July Block Party",
-      "date": "2026-07-04T17:00:00",
-      "location": "Heritage Avenue",
-      "description": "A neighborhood evening event with cold treats, music, and fireworks traffic.",
-      "created_at": "2026-03-18T23:10:15.500000"
-    },
-    {
-      "id": "0d260aa5-f523-4e43-815a-86f30898f209",
-      "title": "Back to School Pep Rally",
-      "date": "2026-08-22T16:30:00",
-      "location": "Central High School",
-      "description": "A late-summer school event featuring fan favorites and a big after-school crowd.",
-      "created_at": "2026-03-18T23:10:16.000000"
-    }
-  ],
-  "about_us": {
-    "id": "6f104221-bf46-4091-b235-6d404d97bfc1",
-    "content": "Purple Polar Bear is the premier snow ball destination! We've been serving the community for over 10 years with the finest shaved ice and premium syrups. Our family-owned business takes pride in bringing joy and refreshing treats to your neighborhood events and daily cravings. Come experience the Purple Polar Bear difference!",
-    "updated_at": "2026-03-18T19:59:08.892935"
-  },
-  "event_photos": [
-    {
-      "id": "38c280ec-bd89-4526-a6a7-2c267c0a3901",
-      "title": "Baby SnowBall #1",
-      "event_name": "Baby Event",
-      "image_base64": "/assets/gallery/user-photos/baby-snowball-1.png",
-      "featured": true,
-      "created_at": "2026-03-18T23:10:20.000000"
-    },
-    {
-      "id": "3d2ac79e-9f19-4443-92b5-c1953604e902",
-      "title": "Baby SnowBall #2",
-      "event_name": "Baby Event",
-      "image_base64": "/assets/gallery/user-photos/baby-snowball-2.png",
-      "featured": true,
-      "created_at": "2026-03-18T23:10:21.000000"
-    },
-    {
-      "id": "8d8241de-ef01-477e-a191-0a7a15fc1503",
-      "title": "Baby SnowBall #3",
-      "event_name": "Baby Event",
-      "image_base64": "/assets/gallery/user-photos/baby-snowball-3.png",
-      "featured": false,
-      "created_at": "2026-03-18T23:10:22.000000"
-    },
-    {
-      "id": "0a69af5c-179d-41fe-86c6-2d8f4d90f804",
-      "title": "Baby SnowBall #4",
-      "event_name": "Baby Event",
-      "image_base64": "/assets/gallery/user-photos/baby-snowball-4.png",
-      "featured": false,
-      "created_at": "2026-03-18T23:10:23.000000"
-    },
-    {
-      "id": "62667f62-4387-4443-b7d8-2531cc219405",
-      "title": "Baby SnowBall #5",
-      "event_name": "Baby Event",
-      "image_base64": "/assets/gallery/user-photos/baby-snowball-5.png",
-      "featured": false,
-      "created_at": "2026-03-18T23:10:24.000000"
-    },
-    {
-      "id": "e4ce92f2-b212-4447-b8d8-4e4580f24d06",
-      "title": "Baby SnowBall #6",
-      "event_name": "Baby Event",
-      "image_base64": "/assets/gallery/user-photos/baby-snowball-6.png",
-      "featured": false,
-      "created_at": "2026-03-18T23:10:25.000000"
-    }
-  ],
-  "reviews": [
-    {
-      "id": "ca3fe024-fbd9-41da-9ef5-a25373e32245",
-      "customer_name": "Emily R.",
-      "rating": 4,
-      "comment": "Love the variety of flavors. The Rainbow Blast is incredible!",
-      "approved": true,
-      "created_at": "2026-03-18T19:59:08.892935"
-    },
-    {
-      "id": "85a8e4df-92bf-4fd2-a475-70690f027869",
-      "customer_name": "Mike J.",
-      "rating": 5,
-      "comment": "Great service and delicious treats. Perfect for our summer party!",
-      "approved": true,
-      "created_at": "2026-03-18T19:59:08.892935"
-    },
-    {
-      "id": "bd8e2aa6-e946-451a-8117-1d731b890223",
-      "customer_name": "Sarah M.",
-      "rating": 5,
-      "comment": "Amazing snow balls! The kids absolutely loved the Purple Rain flavor. Will definitely be back!",
-      "approved": true,
-      "created_at": "2026-03-18T19:59:08.892935"
-    },
-    {
-      "id": "4d90ab24-6c4d-4a1f-8c2d-10e1b4db0a14",
-      "customer_name": "Jordan T.",
-      "rating": 5,
-      "comment": "Best shave ice in town.",
-      "approved": true,
-      "created_at": "2026-03-18T20:24:30.000000"
-    },
-    {
-      "id": "13ccac7b-cb42-4dbe-a63e-1bb52a34782b",
-      "customer_name": "Alicia P.",
-      "rating": 4,
-      "comment": "The setup looked great, service was fast, and the flavors were a hit with both kids and adults at our neighborhood event.",
-      "approved": true,
-      "created_at": "2026-03-18T20:24:31.000000"
-    },
-    {
-      "id": "76cb2a10-5ac6-48c0-8e89-f2d8f94fd721",
-      "customer_name": "Marcus L.",
-      "rating": 5,
-      "comment": "We booked Purple Polar Bear for a school fundraiser and everything went smoothly from start to finish. The team arrived on time, the stand looked fantastic, and the line stayed busy all evening because everyone kept coming back for another flavor.",
-      "approved": true,
-      "created_at": "2026-03-18T20:24:32.000000"
-    },
-    {
-      "id": "fb60f228-1496-4fd2-b71d-3429d5fd8001",
-      "customer_name": "Kayla N.",
-      "rating": 5,
-      "comment": "Such a fun treat stand.",
-      "approved": true,
-      "created_at": "2026-03-18T23:54:10.000000"
-    },
-    {
-      "id": "fbe4d3bc-2112-4d35-a0e2-1ae0cb758002",
-      "customer_name": "Chris B.",
-      "rating": 4,
-      "comment": "Fast line and great flavor.",
-      "approved": true,
-      "created_at": "2026-03-18T23:54:11.000000"
-    },
-    {
-      "id": "b89cd298-6b12-4b29-9409-4b6fc0701003",
-      "customer_name": "Tina W.",
-      "rating": 5,
-      "comment": "The purple flavors were a hit.",
-      "approved": true,
-      "created_at": "2026-03-18T23:54:12.000000"
-    },
-    {
-      "id": "ba2ce3f1-a5cc-4d16-a1b0-6676b6d3a004",
-      "customer_name": "Devon S.",
-      "rating": 5,
-      "comment": "We booked Purple Polar Bear for our neighborhood splash day and the setup looked polished, moved quickly, and kept the kids excited the whole time.",
-      "approved": true,
-      "created_at": "2026-03-18T23:54:13.000000"
-    },
-    {
-      "id": "2bb9a9a7-85e4-4b25-b5f2-0f041d519005",
-      "customer_name": "Rachel C.",
-      "rating": 4,
-      "comment": "The stand looked great in photos, the team was easy to work with, and the flavor options gave everyone something different to try during our school event.",
-      "approved": true,
-      "created_at": "2026-03-18T23:54:14.000000"
-    },
-    {
-      "id": "7455cb8f-c1cc-4be7-8b36-8e154d20f006",
-      "customer_name": "Brandon H.",
-      "rating": 5,
-      "comment": "Purple Polar Bear ended up being one of the most talked-about parts of our company summer celebration. The trailer looked sharp, the service stayed friendly even when the line got long, and the guests kept mentioning how good the flavors were long after the event wrapped up.",
-      "approved": true,
-      "created_at": "2026-03-18T23:54:15.000000"
-    }
-  ]
+    "business_status":  {
+                            "id":  "a444dd1e-136c-4191-bada-b5dfc5ab65f2",
+                            "is_open":  false,
+                            "message":  "",
+                            "location":  "",
+                            "updated_at":  "2026-03-19T00:02:32.560498"
+                        },
+    "menu_items":  [
+                       {
+                           "id":  "4b4204ae-18d6-4796-b3be-51776b0af0c4",
+                           "name":  "Banana",
+                           "emoji":  "??",
+                           "created_at":  "2026-05-06T02:35:12.9186405Z"
+                       },
+                       {
+                           "id":  "e8f1be80-1f3c-427a-921e-508d19db46c2",
+                           "name":  "Black Cherry",
+                           "emoji":  "??",
+                           "created_at":  "2026-05-06T02:35:12.9186405Z"
+                       },
+                       {
+                           "id":  "7fa23183-6e73-4cad-a13c-1c6aafbc1b10",
+                           "name":  "Blue Raspberry",
+                           "emoji":  "??",
+                           "created_at":  "2026-05-06T02:35:12.9186405Z"
+                       },
+                       {
+                           "id":  "a949e1ee-874a-4ec1-bbdd-28e699e8739f",
+                           "name":  "Bubble Gum",
+                           "emoji":  "??",
+                           "created_at":  "2026-05-06T02:35:12.9186405Z"
+                       },
+                       {
+                           "id":  "1fd893cc-e354-498a-b4e3-268d9c7b91c9",
+                           "name":  "Butter Beer",
+                           "emoji":  "??",
+                           "created_at":  "2026-05-06T02:35:12.9186405Z"
+                       },
+                       {
+                           "id":  "e217f52f-c38f-499a-a31e-53299dd459c6",
+                           "name":  "Cherry",
+                           "emoji":  "??",
+                           "created_at":  "2026-05-06T02:35:12.9186405Z"
+                       },
+                       {
+                           "id":  "30a80559-b5e7-46c5-bb80-dfb5679c7588",
+                           "name":  "Chocolate",
+                           "emoji":  "??",
+                           "created_at":  "2026-05-06T02:35:12.9186405Z"
+                       },
+                       {
+                           "id":  "87e82257-7d0d-45cf-b79a-e951fa8a0e8d",
+                           "name":  "Coconut",
+                           "emoji":  "??",
+                           "created_at":  "2026-05-06T02:35:12.9186405Z"
+                       },
+                       {
+                           "id":  "f45bb65c-e2f7-4460-91a4-6e50e0238c08",
+                           "name":  "Cola",
+                           "emoji":  "??",
+                           "created_at":  "2026-05-06T02:35:12.9186405Z"
+                       },
+                       {
+                           "id":  "29da5cb0-fd7b-4626-9a91-29c16f1345ee",
+                           "name":  "Cotton Candy",
+                           "emoji":  "??",
+                           "created_at":  "2026-05-06T02:35:12.9186405Z"
+                       },
+                       {
+                           "id":  "ee0541fc-6b8f-493b-9af7-6ce68202228b",
+                           "name":  "Egg Custard",
+                           "emoji":  "??",
+                           "created_at":  "2026-05-06T02:35:12.9186405Z"
+                       },
+                       {
+                           "id":  "f759dc7e-ca5b-4902-bee1-d3d590a18591",
+                           "name":  "Fireball",
+                           "emoji":  "??",
+                           "created_at":  "2026-05-06T02:35:12.9186405Z"
+                       },
+                       {
+                           "id":  "3ce767de-3a46-48d7-83fd-bbd26ed500b9",
+                           "name":  "French Vanilla",
+                           "emoji":  "??",
+                           "created_at":  "2026-05-06T02:35:12.9186405Z"
+                       },
+                       {
+                           "id":  "0a9d5120-3b41-4a7b-a7da-7209751727b0",
+                           "name":  "Grape",
+                           "emoji":  "??",
+                           "created_at":  "2026-05-06T02:35:12.9186405Z"
+                       },
+                       {
+                           "id":  "112e5779-6c6c-45b1-bb1b-44fa4bc811d2",
+                           "name":  "Green Apple",
+                           "emoji":  "??",
+                           "created_at":  "2026-05-06T02:35:12.9186405Z"
+                       },
+                       {
+                           "id":  "ef137967-62d8-4f54-8c1a-f18433c9d9e6",
+                           "name":  "Gummy Bear",
+                           "emoji":  "??",
+                           "created_at":  "2026-05-06T02:35:12.9186405Z"
+                       },
+                       {
+                           "id":  "2465a60c-6142-46e8-be84-09147e673a33",
+                           "name":  "Hawaiian Tutti Frutti",
+                           "emoji":  "??",
+                           "created_at":  "2026-05-06T02:35:12.9186405Z"
+                       },
+                       {
+                           "id":  "2d87c71b-a4a6-4997-b22d-48c940bc7ae8",
+                           "name":  "Honeydew Melon",
+                           "emoji":  "??",
+                           "created_at":  "2026-05-06T02:35:12.9186405Z"
+                       },
+                       {
+                           "id":  "cb3e88a8-b5aa-4014-8eaa-bb394c127e94",
+                           "name":  "Kiwi",
+                           "emoji":  "??",
+                           "created_at":  "2026-05-06T02:35:12.9186405Z"
+                       },
+                       {
+                           "id":  "784eba72-7d20-4db8-ac7a-823391d6c3e6",
+                           "name":  "Lemon",
+                           "emoji":  "??",
+                           "created_at":  "2026-05-06T02:35:12.9186405Z"
+                       },
+                       {
+                           "id":  "084e2732-1b37-4c32-903a-81b1deaf9651",
+                           "name":  "Lime",
+                           "emoji":  "??",
+                           "created_at":  "2026-05-06T02:35:12.9186405Z"
+                       },
+                       {
+                           "id":  "3ced60df-cee9-485e-94c0-f666a8cb417c",
+                           "name":  "Mango",
+                           "emoji":  "??",
+                           "created_at":  "2026-05-06T02:35:12.9186405Z"
+                       },
+                       {
+                           "id":  "f7156c9c-d8c3-4173-9070-c6a19a3ec5a1",
+                           "name":  "Orange",
+                           "emoji":  "??",
+                           "created_at":  "2026-05-06T02:35:12.9186405Z"
+                       },
+                       {
+                           "id":  "417632b2-032e-41db-ba38-68731285ae10",
+                           "name":  "Peach",
+                           "emoji":  "??",
+                           "created_at":  "2026-05-06T02:35:12.9186405Z"
+                       },
+                       {
+                           "id":  "da12fc6b-249c-4a66-bc30-7896ee0feeaa",
+                           "name":  "Pineapple",
+                           "emoji":  "??",
+                           "created_at":  "2026-05-06T02:35:12.9186405Z"
+                       },
+                       {
+                           "id":  "f4120b97-8d8f-4e13-b338-3f411c49a954",
+                           "name":  "Pink Lemonade",
+                           "emoji":  "??",
+                           "created_at":  "2026-05-06T02:35:12.9186405Z"
+                       },
+                       {
+                           "id":  "960c45d7-67dc-493b-9a82-d0b20b8bf122",
+                           "name":  "Red Raspberry",
+                           "emoji":  "??",
+                           "created_at":  "2026-05-06T02:35:12.9186405Z"
+                       },
+                       {
+                           "id":  "e6b1c074-64ff-4982-a98d-53f5d43cf37a",
+                           "name":  "Root Beer",
+                           "emoji":  "??",
+                           "created_at":  "2026-05-06T02:35:12.9186405Z"
+                       },
+                       {
+                           "id":  "f4d7289e-3711-403b-9222-b9c98fece92a",
+                           "name":  "Skylight",
+                           "emoji":  "??",
+                           "created_at":  "2026-05-06T02:35:12.9186405Z"
+                       },
+                       {
+                           "id":  "67223ce6-60d0-4954-8a31-3a3ce3bf0cf9",
+                           "name":  "Spearmint",
+                           "emoji":  "??",
+                           "created_at":  "2026-05-06T02:35:12.9186405Z"
+                       },
+                       {
+                           "id":  "d21638d1-5c70-4124-beb1-87a06b1b919c",
+                           "name":  "Strawberry",
+                           "emoji":  "??",
+                           "created_at":  "2026-05-06T02:35:12.9186405Z"
+                       },
+                       {
+                           "id":  "6a8249f7-7b16-4dca-9466-c29833f23023",
+                           "name":  "Watermelon",
+                           "emoji":  "??",
+                           "created_at":  "2026-05-06T02:35:12.9186405Z"
+                       }
+                   ],
+    "event_requests":  [
+
+                       ],
+    "notification_emails":  [
+                                {
+                                    "id":  "e4b17388-02de-4a8e-8fd8-97b429bf2f10",
+                                    "email":  "bhauer2011@gmail.com",
+                                    "created_at":  "2026-04-18T00:00:00.000000"
+                                }
+                            ],
+    "upcoming_events":  [
+                            {
+                                "id":  "9f9d0701-aed3-4df1-8c71-d2a3f1a2b901",
+                                "title":  "Spring Market Pop-Up",
+                                "date":  "2025-04-12T11:00:00",
+                                "location":  "Riverside Artisan Market",
+                                "description":  "An early-season stop with bright flavors and family foot traffic all afternoon.",
+                                "created_at":  "2026-03-18T23:10:10.000000"
+                            },
+                            {
+                                "id":  "ccf3f6a5-b55d-4da1-b3e9-fad1f1f4c902",
+                                "title":  "Summer Street Fair",
+                                "date":  "2025-07-20T14:00:00",
+                                "location":  "Downtown Market Square",
+                                "description":  "A fun afternoon serving neighborhood favorites during the summer fair.",
+                                "created_at":  "2026-03-18T23:10:11.000000"
+                            },
+                            {
+                                "id":  "8b3d8b48-50e0-4c56-9af4-95fcf2f8d903",
+                                "title":  "School Fundraiser Night",
+                                "date":  "2025-09-13T18:30:00",
+                                "location":  "Riverside Elementary",
+                                "description":  "We set up at the school fundraiser with classic flavors and Rainbow Blast.",
+                                "created_at":  "2026-03-18T23:10:12.000000"
+                            },
+                            {
+                                "id":  "3f5f8754-2f7d-45db-87f0-c39096f23904",
+                                "title":  "Holiday Tree Lighting",
+                                "date":  "2025-12-05T17:45:00",
+                                "location":  "City Hall Plaza",
+                                "description":  "A festive evening event with lights, music, and cold treats for the crowd.",
+                                "created_at":  "2026-03-18T23:10:13.000000"
+                            },
+                            {
+                                "id":  "eebcdff9-bb2b-4ff7-a9df-722f2adce905",
+                                "title":  "Little League Opening Day",
+                                "date":  "2026-04-06T12:30:00",
+                                "location":  "Northside Ball Fields",
+                                "description":  "Purple Polar Bear favorites served by the concession area through the afternoon games.",
+                                "created_at":  "2026-03-18T23:10:14.000000"
+                            },
+                            {
+                                "id":  "33e900ec-ae2f-4f0a-a8bb-6d8ea3b53a07",
+                                "title":  "Spring Carnival Weekend",
+                                "date":  "2026-05-02T15:00:00",
+                                "location":  "Pine Grove Community Center",
+                                "description":  "An afternoon stop with family flavors, music, and a steady event crowd.",
+                                "created_at":  "2026-03-18T23:10:14.500000"
+                            },
+                            {
+                                "id":  "b44730f3-7074-45f1-8c85-1a04d940fa06",
+                                "title":  "Community Splash Day",
+                                "date":  "2026-06-21T13:00:00",
+                                "location":  "Lakeside Family Park",
+                                "description":  "A warm-weather park event with music, water games, and our signature snow ball specials.",
+                                "created_at":  "2026-03-18T23:10:15.000000"
+                            },
+                            {
+                                "id":  "5db430c1-0f96-4bb5-a115-f4a10d9f4908",
+                                "title":  "Fourth of July Block Party",
+                                "date":  "2026-07-04T17:00:00",
+                                "location":  "Heritage Avenue",
+                                "description":  "A neighborhood evening event with cold treats, music, and fireworks traffic.",
+                                "created_at":  "2026-03-18T23:10:15.500000"
+                            },
+                            {
+                                "id":  "0d260aa5-f523-4e43-815a-86f30898f209",
+                                "title":  "Back to School Pep Rally",
+                                "date":  "2026-08-22T16:30:00",
+                                "location":  "Central High School",
+                                "description":  "A late-summer school event featuring fan favorites and a big after-school crowd.",
+                                "created_at":  "2026-03-18T23:10:16.000000"
+                            }
+                        ],
+    "about_us":  {
+                     "id":  "6f104221-bf46-4091-b235-6d404d97bfc1",
+                     "content":  "Purple Polar Bear is the premier snow ball destination! We\u0027ve been serving the community for over 10 years with the finest shaved ice and premium syrups. Our family-owned business takes pride in bringing joy and refreshing treats to your neighborhood events and daily cravings. Come experience the Purple Polar Bear difference!",
+                     "updated_at":  "2026-03-18T19:59:08.892935"
+                 },
+    "event_photos":  [
+                         {
+                             "id":  "38c280ec-bd89-4526-a6a7-2c267c0a3901",
+                             "title":  "Baby SnowBall #1",
+                             "event_name":  "Baby Event",
+                             "image_base64":  "/assets/gallery/user-photos/baby-snowball-1.png",
+                             "featured":  true,
+                             "created_at":  "2026-03-18T23:10:20.000000"
+                         },
+                         {
+                             "id":  "3d2ac79e-9f19-4443-92b5-c1953604e902",
+                             "title":  "Baby SnowBall #2",
+                             "event_name":  "Baby Event",
+                             "image_base64":  "/assets/gallery/user-photos/baby-snowball-2.png",
+                             "featured":  true,
+                             "created_at":  "2026-03-18T23:10:21.000000"
+                         },
+                         {
+                             "id":  "8d8241de-ef01-477e-a191-0a7a15fc1503",
+                             "title":  "Baby SnowBall #3",
+                             "event_name":  "Baby Event",
+                             "image_base64":  "/assets/gallery/user-photos/baby-snowball-3.png",
+                             "featured":  false,
+                             "created_at":  "2026-03-18T23:10:22.000000"
+                         },
+                         {
+                             "id":  "0a69af5c-179d-41fe-86c6-2d8f4d90f804",
+                             "title":  "Baby SnowBall #4",
+                             "event_name":  "Baby Event",
+                             "image_base64":  "/assets/gallery/user-photos/baby-snowball-4.png",
+                             "featured":  false,
+                             "created_at":  "2026-03-18T23:10:23.000000"
+                         },
+                         {
+                             "id":  "62667f62-4387-4443-b7d8-2531cc219405",
+                             "title":  "Baby SnowBall #5",
+                             "event_name":  "Baby Event",
+                             "image_base64":  "/assets/gallery/user-photos/baby-snowball-5.png",
+                             "featured":  false,
+                             "created_at":  "2026-03-18T23:10:24.000000"
+                         },
+                         {
+                             "id":  "e4ce92f2-b212-4447-b8d8-4e4580f24d06",
+                             "title":  "Baby SnowBall #6",
+                             "event_name":  "Baby Event",
+                             "image_base64":  "/assets/gallery/user-photos/baby-snowball-6.png",
+                             "featured":  false,
+                             "created_at":  "2026-03-18T23:10:25.000000"
+                         }
+                     ],
+    "reviews":  [
+                    {
+                        "id":  "ca3fe024-fbd9-41da-9ef5-a25373e32245",
+                        "customer_name":  "Emily R.",
+                        "rating":  4,
+                        "comment":  "Love the variety of flavors. The Rainbow Blast is incredible!",
+                        "approved":  true,
+                        "created_at":  "2026-03-18T19:59:08.892935"
+                    },
+                    {
+                        "id":  "85a8e4df-92bf-4fd2-a475-70690f027869",
+                        "customer_name":  "Mike J.",
+                        "rating":  5,
+                        "comment":  "Great service and delicious treats. Perfect for our summer party!",
+                        "approved":  true,
+                        "created_at":  "2026-03-18T19:59:08.892935"
+                    },
+                    {
+                        "id":  "bd8e2aa6-e946-451a-8117-1d731b890223",
+                        "customer_name":  "Sarah M.",
+                        "rating":  5,
+                        "comment":  "Amazing snow balls! The kids absolutely loved the Purple Rain flavor. Will definitely be back!",
+                        "approved":  true,
+                        "created_at":  "2026-03-18T19:59:08.892935"
+                    },
+                    {
+                        "id":  "4d90ab24-6c4d-4a1f-8c2d-10e1b4db0a14",
+                        "customer_name":  "Jordan T.",
+                        "rating":  5,
+                        "comment":  "Best shave ice in town.",
+                        "approved":  true,
+                        "created_at":  "2026-03-18T20:24:30.000000"
+                    },
+                    {
+                        "id":  "13ccac7b-cb42-4dbe-a63e-1bb52a34782b",
+                        "customer_name":  "Alicia P.",
+                        "rating":  4,
+                        "comment":  "The setup looked great, service was fast, and the flavors were a hit with both kids and adults at our neighborhood event.",
+                        "approved":  true,
+                        "created_at":  "2026-03-18T20:24:31.000000"
+                    },
+                    {
+                        "id":  "76cb2a10-5ac6-48c0-8e89-f2d8f94fd721",
+                        "customer_name":  "Marcus L.",
+                        "rating":  5,
+                        "comment":  "We booked Purple Polar Bear for a school fundraiser and everything went smoothly from start to finish. The team arrived on time, the stand looked fantastic, and the line stayed busy all evening because everyone kept coming back for another flavor.",
+                        "approved":  true,
+                        "created_at":  "2026-03-18T20:24:32.000000"
+                    },
+                    {
+                        "id":  "fb60f228-1496-4fd2-b71d-3429d5fd8001",
+                        "customer_name":  "Kayla N.",
+                        "rating":  5,
+                        "comment":  "Such a fun treat stand.",
+                        "approved":  true,
+                        "created_at":  "2026-03-18T23:54:10.000000"
+                    },
+                    {
+                        "id":  "fbe4d3bc-2112-4d35-a0e2-1ae0cb758002",
+                        "customer_name":  "Chris B.",
+                        "rating":  4,
+                        "comment":  "Fast line and great flavor.",
+                        "approved":  true,
+                        "created_at":  "2026-03-18T23:54:11.000000"
+                    },
+                    {
+                        "id":  "b89cd298-6b12-4b29-9409-4b6fc0701003",
+                        "customer_name":  "Tina W.",
+                        "rating":  5,
+                        "comment":  "The purple flavors were a hit.",
+                        "approved":  true,
+                        "created_at":  "2026-03-18T23:54:12.000000"
+                    },
+                    {
+                        "id":  "ba2ce3f1-a5cc-4d16-a1b0-6676b6d3a004",
+                        "customer_name":  "Devon S.",
+                        "rating":  5,
+                        "comment":  "We booked Purple Polar Bear for our neighborhood splash day and the setup looked polished, moved quickly, and kept the kids excited the whole time.",
+                        "approved":  true,
+                        "created_at":  "2026-03-18T23:54:13.000000"
+                    },
+                    {
+                        "id":  "2bb9a9a7-85e4-4b25-b5f2-0f041d519005",
+                        "customer_name":  "Rachel C.",
+                        "rating":  4,
+                        "comment":  "The stand looked great in photos, the team was easy to work with, and the flavor options gave everyone something different to try during our school event.",
+                        "approved":  true,
+                        "created_at":  "2026-03-18T23:54:14.000000"
+                    },
+                    {
+                        "id":  "7455cb8f-c1cc-4be7-8b36-8e154d20f006",
+                        "customer_name":  "Brandon H.",
+                        "rating":  5,
+                        "comment":  "Purple Polar Bear ended up being one of the most talked-about parts of our company summer celebration. The trailer looked sharp, the service stayed friendly even when the line got long, and the guests kept mentioning how good the flavors were long after the event wrapped up.",
+                        "approved":  true,
+                        "created_at":  "2026-03-18T23:54:15.000000"
+                    }
+                ]
 }

@@ -487,35 +487,115 @@ function renderHomePage() {
 
 function renderMenuPage() {
   const menu = state.data?.menu || [];
+  const cupSizes = [
+    { name: "Cubby Cup", price: "$3" },
+    { name: "Little Bear", price: "$4" },
+    { name: "Mama Bear", price: "$5" },
+    { name: "Papa Bear", price: "$6" }
+  ];
+  const addOns = [
+    { name: "Strawberry Popping Boba", price: "$1", detail: "Bursting strawberry pearls." },
+    { name: "Gummies & Chewy", price: ".75�", detail: "A chewy candy mix." },
+    { name: "Sweet Candy Mix", price: ".75�", detail: "Sour patch, nerds, and more." },
+    { name: "Marshmallow Topping", price: ".75�", detail: "Soft, sweet topping." },
+    { name: "Cotton Candy Topper", price: "$1", detail: "Big cotton candy finish." },
+    { name: "Sour Spray", price: ".50�", detail: "Tangy extra kick." }
+  ];
+  const flavorUpgrades = [
+    { name: "Daiquiri Style", detail: "Mix any flavor with pineapple for a tropical twist." },
+    { name: "Colada Style", detail: "Mix any flavor with coconut for a creamy island vibe." }
+  ];
+  const midpoint = Math.ceil(menu.length / 2);
+  const flavorColumns = [menu.slice(0, midpoint), menu.slice(midpoint)];
 
   return `
     <section class="page">
       ${renderErrorCard()}
       <header class="app-page-top">
-        <a class="back-link" href="#/">←</a>
+        <a class="back-link" href="#/">&larr;</a>
         <h1>Browse Flavors</h1>
         <span></span>
       </header>
       <div class="page menu-page">
-        <p class="screen-subtitle">Fresh Shave Ice with premium syrups!</p>
-        <div class="menu-grid">
-        ${menu
-          .map(
-            (item, index) => `
-              <article class="menu-item menu-item-simple" style="background:${
-                index % 2 === 0 ? "#fce1e1" : "#dff3f5"
-              }">
-                <div>
-                  <strong>${escapeHtml(item.name)}</strong>
-                  <p class="meta">${escapeHtml(flavorDescription(item.name))}</p>
-                </div>
-                <span class="menu-emoji">${escapeHtml(item.emoji || "🍧")}</span>
-              </article>
-            `
-          )
-          .join("") || `<div class="empty-state">No menu items yet. Add them from the admin dashboard.</div>`}
-        </div>
-        <div class="menu-snow-row" aria-hidden="true">❄ ❄ ❄ ❄ ❄ ❄ ❄ ❄</div>
+        <p class="screen-subtitle">Fresh shave ice with premium syrups, add-ons, and upgrades.</p>
+        <section class="menu-section">
+          <h2 class="menu-section-title">Cup Sizes</h2>
+          <div class="menu-price-grid">
+            ${cupSizes
+              .map(
+                (item) => `
+                  <article class="menu-price-card">
+                    <span class="menu-price-name">${escapeHtml(item.name)}</span>
+                    <strong class="menu-price-value">${escapeHtml(item.price)}</strong>
+                  </article>
+                `
+              )
+              .join("")}
+          </div>
+        </section>
+        <section class="menu-section">
+          <h2 class="menu-section-title">Add-Ons</h2>
+          <div class="menu-addon-grid">
+            ${addOns
+              .map(
+                (item) => `
+                  <article class="menu-addon-card">
+                    <strong>${escapeHtml(item.name)}</strong>
+                    <p>${escapeHtml(item.detail)}</p>
+                    <span class="menu-addon-price">${escapeHtml(item.price)}</span>
+                  </article>
+                `
+              )
+              .join("")}
+          </div>
+        </section>
+        <section class="menu-section">
+          <h2 class="menu-section-title">Flavor Menu</h2>
+          <div class="flavor-columns">
+            ${flavorColumns
+              .map(
+                (column) => `
+                  <div class="flavor-column">
+                    ${column
+                      .map(
+                        (item) => `
+                          <article class="flavor-item">
+                            <strong>${escapeHtml(item.name)}</strong>
+                          </article>
+                        `
+                      )
+                      .join("")}
+                  </div>
+                `
+              )
+              .join("")}
+          </div>
+        </section>
+        <section class="menu-section menu-extras-grid">
+          <article class="menu-extra-card">
+            <h3>Sugar Free Flavors</h3>
+            <p>Available upon request.</p>
+          </article>
+          <article class="menu-extra-card highlight">
+            <h3>Bag of Cotton Candy</h3>
+            <p class="menu-extra-price">$4</p>
+          </article>
+          <article class="menu-extra-card">
+            <h3>Flavor Upgrades</h3>
+            ${flavorUpgrades
+              .map(
+                (item) => `
+                  <div class="menu-upgrade-row">
+                    <strong>${escapeHtml(item.name)}</strong>
+                    <p>${escapeHtml(item.detail)}</p>
+                  </div>
+                `
+              )
+              .join("")}
+          </article>
+        </section>
+        ${!menu.length ? `<div class="empty-state">No menu items yet. Add them from the admin dashboard.</div>` : ""}
+        <div class="menu-snow-row" aria-hidden="true">&#10052; &#10052; &#10052; &#10052; &#10052; &#10052; &#10052; &#10052;</div>
       </div>
     </section>
   `;
@@ -1578,6 +1658,8 @@ function createSnowflakes() {
     }
   }, 450);
 }
+
+
 
 
 
