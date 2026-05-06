@@ -1,4 +1,4 @@
-import { apiBase, apiSend, loadAdminData, loadHomeData, login } from "./api.js";
+﻿import { apiBase, apiSend, loadAdminData, loadHomeData, login } from "./api.js";
 import {
   escapeHtml,
   formatDate,
@@ -362,7 +362,7 @@ function renderHomePage() {
       <section class="page home-detail-sections">
         <div class="section-heading">
           <div>
-            <h2>📷 Event Photos</h2>
+            <h2>ðŸ“· Event Photos</h2>
           </div>
           <a class="inline-button" href="#/photos">View Photos</a>
         </div>
@@ -375,7 +375,7 @@ function renderHomePage() {
                     ${
                       photo.image_base64
                         ? `<img alt="${escapeHtml(photo.title)}" src="${getPhotoSrc(photo.image_base64)}" />`
-                        : `<span style="font-size:2rem">📸</span>`
+                        : `<span style="font-size:2rem">ðŸ“¸</span>`
                     }
                   </div>
                   <div class="photo-copy">
@@ -404,7 +404,7 @@ function renderHomePage() {
       <section class="page home-detail-sections">
         <div class="section-heading">
           <div>
-            <h2>⭐ Customer Reviews</h2>
+            <h2>â­ Customer Reviews</h2>
           </div>
         </div>
         <div class="reviews-scroll">
@@ -439,7 +439,7 @@ function renderHomePage() {
               .join("") || `<div class="empty-state">Reviews will appear here once approved in the admin panel.</div>`}
           </div>
         </div>
-        <button class="button review-open-button review-cta-home" data-action="open-review-modal" type="button">★ Leave Review</button>
+        <button class="button review-open-button review-cta-home" data-action="open-review-modal" type="button">â˜… Leave Review</button>
       </section>
 
       <section class="page home-detail-sections">
@@ -487,6 +487,7 @@ function renderHomePage() {
 
 function renderMenuPage() {
   const menu = state.data?.menu || [];
+  const mascotUrl = "/assets/ppb_main_hero_20260322.png";
   const cupSizes = [
     { name: "Cubby Cup", price: "$3" },
     { name: "Little Bear", price: "$4" },
@@ -495,11 +496,11 @@ function renderMenuPage() {
   ];
   const addOns = [
     { name: "Strawberry Popping Boba", price: "$1", detail: "Bursting strawberry pearls." },
-    { name: "Gummies & Chewy", price: ".75�", detail: "A chewy candy mix." },
-    { name: "Sweet Candy Mix", price: ".75�", detail: "Sour patch, nerds, and more." },
-    { name: "Marshmallow Topping", price: ".75�", detail: "Soft, sweet topping." },
+    { name: "Gummies Soft & Chewy", price: ".75¢", detail: "A chewy candy mix." },
+    { name: "Sweet Candy Mix", price: ".75¢", detail: "Sour patch, nerds, and more." },
+    { name: "Marshmallow Topping", price: ".75¢", detail: "Soft, sweet topping." },
     { name: "Cotton Candy Topper", price: "$1", detail: "Big cotton candy finish." },
-    { name: "Sour Spray", price: ".50�", detail: "Tangy extra kick." }
+    { name: "Sour Spray", price: ".50¢", detail: "Tangy extra kick." }
   ];
   const flavorUpgrades = [
     { name: "Daiquiri Style", detail: "Mix any flavor with pineapple for a tropical twist." },
@@ -509,17 +510,27 @@ function renderMenuPage() {
   const flavorColumns = [menu.slice(0, midpoint), menu.slice(midpoint)];
 
   return `
-    <section class="page">
+    <section class="page menu-route-page">
       ${renderErrorCard()}
       <header class="app-page-top">
         <a class="back-link" href="#/">&larr;</a>
         <h1>Browse Flavors</h1>
         <span></span>
       </header>
-      <div class="page menu-page">
-        <p class="screen-subtitle">Fresh shave ice with premium syrups, add-ons, and upgrades.</p>
-        <section class="menu-section">
-          <h2 class="menu-section-title">Cup Sizes</h2>
+      <div class="page menu-page menu-board">
+        <div class="menu-board-decor" aria-hidden="true">
+          <span class="menu-paw paw-one">&#128062;</span>
+          <span class="menu-paw paw-two">&#128062;</span>
+          <span class="menu-paw paw-three">&#128062;</span>
+          <span class="menu-paw paw-four">&#128062;</span>
+        </div>
+
+        <header class="menu-board-header">
+          <p class="menu-board-kicker">Purple Polar Bear Hawaiian Shave Ice</p>
+          <p class="menu-board-subtitle">Fresh shave ice, premium syrups, fun add-ons, and flavor upgrades.</p>
+        </header>
+
+        <section class="menu-section cup-size-section">
           <div class="menu-price-grid">
             ${cupSizes
               .map(
@@ -533,8 +544,9 @@ function renderMenuPage() {
               .join("")}
           </div>
         </section>
-        <section class="menu-section">
-          <h2 class="menu-section-title">Add-Ons</h2>
+
+        <section class="menu-section add-ons-section">
+          <div class="menu-banner">ADD-ONS</div>
           <div class="menu-addon-grid">
             ${addOns
               .map(
@@ -549,8 +561,16 @@ function renderMenuPage() {
               .join("")}
           </div>
         </section>
-        <section class="menu-section">
-          <h2 class="menu-section-title">Flavor Menu</h2>
+
+        <section class="menu-section flavor-menu-section">
+          <div class="flavor-topline">
+            <h2 class="menu-section-title">Flavor Menu</h2>
+            <aside class="menu-callout-circle" aria-label="Bag of Cotton Candy for four dollars">
+              <span>Bag of</span>
+              <strong>Cotton Candy</strong>
+              <em>$4</em>
+            </aside>
+          </div>
           <div class="flavor-columns">
             ${flavorColumns
               .map(
@@ -571,16 +591,14 @@ function renderMenuPage() {
               .join("")}
           </div>
         </section>
-        <section class="menu-section menu-extras-grid">
-          <article class="menu-extra-card">
+
+        <section class="menu-bottom-grid">
+          <aside class="menu-note-card sugar-free-section">
             <h3>Sugar Free Flavors</h3>
-            <p>Available upon request.</p>
-          </article>
-          <article class="menu-extra-card highlight">
-            <h3>Bag of Cotton Candy</h3>
-            <p class="menu-extra-price">$4</p>
-          </article>
-          <article class="menu-extra-card">
+            <p>Upon request.</p>
+          </aside>
+
+          <aside class="menu-upgrades-card upgrades-section">
             <h3>Flavor Upgrades</h3>
             ${flavorUpgrades
               .map(
@@ -592,10 +610,14 @@ function renderMenuPage() {
                 `
               )
               .join("")}
-          </article>
+          </aside>
+
+          <figure class="menu-mascot-area">
+            <img class="menu-mascot-image" src="${mascotUrl}" alt="Purple Polar Bear mascot holding a snow cone" />
+          </figure>
         </section>
+
         ${!menu.length ? `<div class="empty-state">No menu items yet. Add them from the admin dashboard.</div>` : ""}
-        <div class="menu-snow-row" aria-hidden="true">&#10052; &#10052; &#10052; &#10052; &#10052; &#10052; &#10052; &#10052;</div>
       </div>
     </section>
   `;
@@ -609,7 +631,7 @@ function renderPhotosPage() {
     <section class="page">
       ${renderErrorCard()}
       <header class="app-page-top">
-        <a class="back-link" href="#/">←</a>
+        <a class="back-link" href="#/">â†</a>
         <h1>Event Photos</h1>
         <span></span>
       </header>
@@ -624,7 +646,7 @@ function renderPhotosPage() {
                     ${
                       photo.image_base64
                         ? `<img alt="${escapeHtml(photo.title)}" src="${getPhotoSrc(photo.image_base64)}" />`
-                        : `<span style="font-size:2rem">📸</span>`
+                        : `<span style="font-size:2rem">ðŸ“¸</span>`
                     }
                   </div>
                   <div class="photo-copy">
@@ -653,7 +675,7 @@ function renderEventsPage() {
     <section class="page">
       ${renderErrorCard()}
       <header class="app-page-top">
-        <a class="back-link" href="#/">←</a>
+        <a class="back-link" href="#/">â†</a>
         <h1>Find Events</h1>
         <span></span>
       </header>
@@ -668,7 +690,7 @@ function renderEventsPage() {
                 <article class="event-card">
                   <div class="pill">Upcoming</div>
                   <h3>${escapeHtml(event.title)}</h3>
-                  <p>${escapeHtml(event.description || "We’ll be serving our signature favorites.")}</p>
+                  <p>${escapeHtml(event.description || "Weâ€™ll be serving our signature favorites.")}</p>
                   <p class="meta">${escapeHtml(formatDate(event.date, {
                     weekday: "long",
                     month: "long",
@@ -682,7 +704,7 @@ function renderEventsPage() {
             )
             .join("") || `
               <div class="empty-state app-empty-state">
-                <div class="empty-icon">🗓️</div>
+                <div class="empty-icon">ðŸ—“ï¸</div>
                 <h2>No events scheduled</h2>
                 <p>Check back soon for upcoming locations!</p>
               </div>`}
@@ -710,7 +732,7 @@ function renderEventsPage() {
                 </article>
               `
             )
-            .join("") || `<div class="empty-state">Past events will appear once you’ve added enough history.</div>`}
+            .join("") || `<div class="empty-state">Past events will appear once youâ€™ve added enough history.</div>`}
         </div>
       </section>
 
@@ -728,13 +750,13 @@ function renderRequestPage() {
     <section class="page">
       ${renderErrorCard()}
       <header class="app-page-top">
-        <a class="back-link" href="#/">←</a>
+        <a class="back-link" href="#/">â†</a>
         <h1>Book Events</h1>
         <span></span>
       </header>
 
       <section class="request-intro">
-        <div class="request-intro-icon">🗓️</div>
+        <div class="request-intro-icon">ðŸ—“ï¸</div>
         <h2>Book Purple Polar Bear for Your Event!</h2>
         <p>We'll review as soon as we can and get back to you with our availability!</p>
       </section>
@@ -811,7 +833,7 @@ function renderPhotoModal(selectedPhoto) {
   return `
     <div class="modal-backdrop">
       <div class="modal-card modal-photo" role="dialog" aria-modal="true">
-        <button class="modal-close" data-action="close-photo" type="button">×</button>
+        <button class="modal-close" data-action="close-photo" type="button">Ã—</button>
         ${
           selectedPhoto.image_base64
             ? `<img alt="${escapeHtml(selectedPhoto.title)}" src="${getPhotoSrc(selectedPhoto.image_base64)}" />`
@@ -834,7 +856,7 @@ function renderReviewDetailModal(selectedReview) {
   return `
     <div class="modal-backdrop">
       <div class="modal-card modal-review-detail" role="dialog" aria-modal="true">
-        <button class="modal-close" data-action="close-review-detail" type="button">×</button>
+        <button class="modal-close" data-action="close-review-detail" type="button">Ã—</button>
         <div class="review-topline review-topline-stacked">
           <h3>${escapeHtml(selectedReview.customer_name)}</h3>
           <div class="stars" aria-label="${selectedReview.rating} out of 5 stars">${stars(selectedReview.rating)}</div>
@@ -1002,7 +1024,7 @@ function renderAdminSection(data) {
               </div>
               <div class="field">
                 <label for="menu-emoji">Emoji</label>
-                <input id="menu-emoji" name="emoji" value="🍧" required />
+                <input id="menu-emoji" name="emoji" value="ðŸ§" required />
               </div>
             </div>
             <button class="button" type="submit">Add Item</button>
@@ -1013,7 +1035,7 @@ function renderAdminSection(data) {
                 (item) => `
                   <article class="admin-card">
                     <strong>${escapeHtml(item.name)}</strong>
-                    <p class="meta">Emoji: ${escapeHtml(item.emoji || "🍧")}</p>
+                    <p class="meta">Emoji: ${escapeHtml(item.emoji || "ðŸ§")}</p>
                     <div class="action-row">
                       <button class="ghost-button" data-action="delete-menu" data-id="${item.id}" type="button">Delete</button>
                     </div>
@@ -1055,7 +1077,7 @@ function renderAdminSection(data) {
                 (event) => `
                   <article class="admin-card">
                     <strong>${escapeHtml(event.title)}</strong>
-                    <p class="meta">${escapeHtml(formatDate(event.date))} · ${escapeHtml(event.location)}</p>
+                    <p class="meta">${escapeHtml(formatDate(event.date))} Â· ${escapeHtml(event.location)}</p>
                     <p>${escapeHtml(event.description || "")}</p>
                     <div class="action-row">
                       <button class="ghost-button" data-action="delete-event" data-id="${event.id}" type="button">Delete</button>
@@ -1073,8 +1095,8 @@ function renderAdminSection(data) {
                   (request) => `
                     <article class="request-card">
                       <strong>${escapeHtml(request.name)}</strong>
-                      <p class="meta">${escapeHtml(request.email)} · ${escapeHtml(request.phone)}</p>
-                      <p>${escapeHtml(request.event_date)} · ${escapeHtml(request.location)}</p>
+                      <p class="meta">${escapeHtml(request.email)} Â· ${escapeHtml(request.phone)}</p>
+                      <p>${escapeHtml(request.event_date)} Â· ${escapeHtml(request.location)}</p>
                       <p>${escapeHtml(request.message || "")}</p>
                       <p class="meta">Status: ${escapeHtml(request.status || "pending")}</p>
                       <div class="action-row">
@@ -1120,7 +1142,7 @@ function renderAdminSection(data) {
                       ${
                         photo.image_base64
                           ? `<img alt="${escapeHtml(photo.title)}" src="${getPhotoSrc(photo.image_base64)}" />`
-                          : `<span>📸</span>`
+                          : `<span>ðŸ“¸</span>`
                       }
                     </div>
                     <div class="photo-copy">
@@ -1427,7 +1449,7 @@ async function shareReview(dataset) {
   const rating = Number(dataset.rating) || 5;
   const comment = dataset.comment || "";
   const name = dataset.name || "A happy customer";
-  const shareText = `${"⭐".repeat(rating)} "${comment}" - ${name} loved Purple Polar Bear Hawaiian Shave Ice!`;
+  const shareText = `${"â­".repeat(rating)} "${comment}" - ${name} loved Purple Polar Bear Hawaiian Shave Ice!`;
   const targetUrl = window.location.origin + window.location.pathname;
 
   if (dataset.platform === "facebook") {
@@ -1556,7 +1578,7 @@ function renderEventCalendar(events, monthKey) {
       classes.push("today");
     }
     cells.push(`
-      <div class="${classes.join(" ")}" title="${escapeHtml(booked.join(" • "))}">
+      <div class="${classes.join(" ")}" title="${escapeHtml(booked.join(" â€¢ "))}">
         <span class="calendar-date">${day.getDate()}</span>
         ${booked.length ? `<span class="calendar-count">${booked.length}</span>` : `<span class="calendar-count empty"></span>`}
       </div>
@@ -1566,12 +1588,12 @@ function renderEventCalendar(events, monthKey) {
   return `
     <section class="event-calendar-card">
       <div class="calendar-topline">
-        <button class="ghost-button calendar-nav-button" data-action="events-month-prev" type="button" aria-label="Previous month">←</button>
+        <button class="ghost-button calendar-nav-button" data-action="events-month-prev" type="button" aria-label="Previous month">â†</button>
         <div>
           <h2>${escapeHtml(monthLabel)}</h2>
           <p>Booked dates are highlighted below.</p>
         </div>
-        <button class="ghost-button calendar-nav-button" data-action="events-month-next" type="button" aria-label="Next month">→</button>
+        <button class="ghost-button calendar-nav-button" data-action="events-month-next" type="button" aria-label="Next month">â†’</button>
       </div>
       <div class="calendar-weekdays">
         ${weekdayLabels.map((label) => `<span>${label}</span>`).join("")}
@@ -1658,6 +1680,8 @@ function createSnowflakes() {
     }
   }, 450);
 }
+
+
 
 
 
