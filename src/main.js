@@ -563,14 +563,7 @@ function renderMenuPage() {
         </section>
 
         <section class="menu-section flavor-menu-section">
-          <div class="flavor-topline">
-            <h2 class="menu-section-title">Flavor Menu</h2>
-            <aside class="menu-callout-circle" aria-label="Bag of Cotton Candy for four dollars">
-              <span>Bag of</span>
-              <strong>Cotton Candy</strong>
-              <em>$4</em>
-            </aside>
-          </div>
+          <h2 class="menu-section-title">Flavor Menu</h2>
           <div class="flavor-columns">
             ${flavorColumns
               .map(
@@ -593,6 +586,12 @@ function renderMenuPage() {
         </section>
 
         <section class="menu-bottom-grid">
+          <aside class="menu-callout-circle menu-callout-panel" aria-label="Bag of Cotton Candy for four dollars">
+            <span>Bag of</span>
+            <strong>Cotton Candy</strong>
+            <em>$4</em>
+          </aside>
+
           <aside class="menu-note-card sugar-free-section">
             <h3>Sugar Free Flavors</h3>
             <p>Upon request.</p>
@@ -611,10 +610,6 @@ function renderMenuPage() {
               )
               .join("")}
           </aside>
-
-          <figure class="menu-mascot-area">
-            <img class="menu-mascot-image" src="${mascotUrl}" alt="Purple Polar Bear mascot holding a snow cone" />
-          </figure>
         </section>
 
         ${!menu.length ? `<div class="empty-state">No menu items yet. Add them from the admin dashboard.</div>` : ""}
@@ -1680,6 +1675,7 @@ function createSnowflakes() {
     }
   }, 450);
 }
+
 
 
 
